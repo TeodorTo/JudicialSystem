@@ -1,0 +1,22 @@
+﻿@model Judicial_system.Data.Task
+
+@{
+    ViewData["Title"] = "Task Details";
+}
+
+<h1>@Model.Title</h1>
+
+<div>
+    <strong>Description:</strong> @Model.Description
+</div>
+<div>
+    <strong>Unit Test Code:</strong> @Model.UnitTestCode
+</div>
+<div>
+    <strong>Created At:</strong> @Model.CreatedAt.ToString("g")
+</div>
+
+<p>
+    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">Edit</a>
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+</p>

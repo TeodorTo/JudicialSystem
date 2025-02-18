@@ -1,0 +1,40 @@
+﻿@model IEnumerable<Judicial_system.Data.Task>
+
+@{
+    ViewData["Title"] = "Task Index";
+}
+
+<h1>Task List</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Create New Task</a>
+</p>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Created At</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var task in Model)
+    {
+        <tr>
+            <td>@task.Title</td>
+            <td>@task.Description</td>
+            <td>@task.CreatedAt.ToString("g")</td>
+            <td>
+                <a asp-action="Details" asp-route-id="@task.Id" class="btn btn-info">Details</a>
+                <a asp-action="Edit" asp-route-id="@task.Id" class="btn btn-warning">Edit</a>
+                <form asp-action="Delete" asp-route-id="@task.Id" method="post" style="display:inline;">
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+

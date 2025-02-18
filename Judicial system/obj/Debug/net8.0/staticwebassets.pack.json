@@ -2,7 +2,7 @@
   "Files": [
     {
       "Id": "C:\\Users\\Jupiter Soft HP\\Desktop\\Judicial system\\Judicial system\\Judicial system\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\Judicial system.bundle.scp.css",
-      "PackagePath": "staticwebassets\\Judicial system.bundle.scp.css"
+      "PackagePath": "staticwebassets\\Judicial system.w7uwautbjg.bundle.scp.css"
     },
     {
       "Id": "C:\\Users\\Jupiter Soft HP\\Desktop\\Judicial system\\Judicial system\\Judicial system\\wwwroot\\css\\site.css",
@@ -243,6 +243,10 @@
     {
       "Id": "C:\\Users\\Jupiter Soft HP\\Desktop\\Judicial system\\Judicial system\\Judicial system\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.Judicial system.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssetEndpoints.props"
     },
     {
       "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.Judicial system.Microsoft.AspNetCore.StaticWebAssets.props",

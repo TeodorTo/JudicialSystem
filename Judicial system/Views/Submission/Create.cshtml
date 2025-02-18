@@ -1,0 +1,18 @@
+﻿
+
+
+
+@model Judicial_system.Data.Submission
+
+<h2>Решаване на задача</h2>
+
+<form asp-action="Create" method="post">
+    <input type="hidden" name="TaskId" value="@Model.TaskId" />
+
+    <label>Вашето решение:</label>
+    <textarea name="SourceCode" class="form-control" rows="10" required></textarea>
+
+    <button type="submit" class="btn btn-primary">Изпрати решение</button>
+</form>
+
+<a asp-action="Details" asp-route-id="@Model.TaskId" class="btn btn-secondary">Назад към задачата</a>

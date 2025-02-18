@@ -1,0 +1,21 @@
+﻿@model Judicial_system.Data.Task
+
+<h2>Създаване на нова задача</h2>
+
+<form asp-action="Create" method="post">
+    <div class="form-group">
+        <label asp-for="Title">Заглавие</label>
+        <input type="text" name="Title" class="form-control" required />
+    </div>
+    <div class="form-group">
+        <label asp-for="Description">Описание</label>
+        <textarea name="Description" class="form-control" required></textarea>
+    </div>
+    <div class="form-group">
+        <label asp-for="UnitTestCode">Unit Test Code (C#)</label>
+        <textarea name="UnitTestCode" class="form-control" rows="10" required></textarea>
+    </div>
+    <button type="submit" class="btn btn-success">Създай задача</button>
+</form>
+
+<a asp-action="Index" class="btn btn-secondary">Назад към списъка с задачи</a>
