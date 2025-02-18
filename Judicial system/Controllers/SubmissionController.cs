@@ -1,4 +1,5 @@
 ﻿using Judicial_system.Data;
+using Microsoft.CodeAnalysis.CSharp.Scripting;
 //using Microsoft.CodeAnalysis.CSharp.Scripting;
 using Microsoft.CodeAnalysis.Scripting;
 
@@ -33,22 +34,26 @@ public class SubmissionController : Controller
 
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Create(Submission submission)
+    public async Task<IActionResult> Create(int TaskId, string SourceCode)
     {
-        if (ModelState.IsValid)
+        var task = await _context.Tasks.FindAsync(TaskId);
+        if (task == null) return NotFound();
+
+        var submission = new Submission
         {
-            submission.UserId = _userManager.GetUserId(User);
-            submission.SubmissionDate = DateTime.UtcNow;
+            TaskId = TaskId,
+            SourceCode = SourceCode,
+            UserId = _userManager.GetUserId(User),
+            SubmissionDate = DateTime.UtcNow,
+            Score = EvaluateSolution(SourceCode, TaskId)
+        };
 
+        _context.Submissions.Add(submission);
+        await _context.SaveChangesAsync();
 
-       //     submission.Score = EvaluateSolution(submission.SourceCode, submission.TaskId);
-
-            _context.Submissions.Add(submission);
-            await _context.SaveChangesAsync();
-            return RedirectToAction("Details", new { id = submission.Id });
-        }
-        return View(submission);
+        return RedirectToAction("Details", "Submission", new { id = submission.Id });
     }
+
 
 
     public async Task<IActionResult> Details(int id)
@@ -62,61 +67,70 @@ public class SubmissionController : Controller
         return View(submission);
     }
 
-    /*
-     // TODO FIX Csharp.Scripting nuget
-    private decimal EvaluateSolution(string userCode, int taskId)
-    {
+    
+     //TODO FIX Csharp.Scripting nuget
+     private decimal EvaluateSolution(string userCode, int taskId)
+     {
+         var task = _context.Tasks.Find(taskId);
+         if (task == null) return 0;
 
-        var task = _context.Tasks.Find(taskId);
-        if (task == null) return 0;
+         string unitTests = task.UnitTestCode;
 
-        string unitTests = task.UnitTestCode;
+         // Комбинираме кода на потребителя и тестовете
+         string finalCode = $@"
+        using System;
+        public class Program 
+        {{
+            public static void Main() 
+            {{
+                var results = TestRunner.RunTests();
+                Console.WriteLine(string.Join("","", results));
+            }}
+        }}
+        {userCode}
+        {unitTests}";
+
+         try
+         {
+             var result = RunTests(finalCode).Result;
+
+             int passedTests = result.Count(r => r);
+             int totalTests = result.Length;
+
+             return totalTests > 0 ? (decimal)passedTests / totalTests * 100 : 0;
+         }
+         catch (Exception ex)
+         {
+             Console.WriteLine("Грешка при изпълнението: " + ex.Message);
+             return 0;
+         }
+     }
 
 
-        string finalCode = $"{userCode}\n{unitTests}";
 
-        try
-        {
+     private async Task<bool[]> RunTests(string code)
+     {
+         try
+         {
+             var scriptOptions = ScriptOptions.Default
+                 .WithReferences(AppDomain.CurrentDomain.GetAssemblies())
+                 .WithImports("System", "System.Linq", "System.Collections.Generic");
 
-            var result = RunTests(finalCode).Result;
+             var result = await CSharpScript.EvaluateAsync<string>(code, scriptOptions);
 
+             // Логваме резултата за дебъг
+             Console.WriteLine("Output: " + result);
 
-            var passedTests = result.Count(r => r);
-            var totalTests = result.Length;
-            return totalTests > 0 ? (decimal)passedTests / totalTests * 100 : 0;
-        }
-        catch
-        {
-            return 0;
-        }
-    }
+             // Парсваме резултатите от Console.WriteLine
+             return result.Split(',').Select(bool.Parse).ToArray();
+         }
+         catch (Exception ex)
+         {
+             Console.WriteLine("Error executing script: " + ex.Message);
+         }
 
+         return new bool[0];
+     }
 
-    private async Task<bool[]> RunTests(string code)
-    {
-        try
-        {
-            // Изпълняваме динамично подадения C# код
-            var scriptOptions = ScriptOptions.Default
-                .WithReferences(AppDomain.CurrentDomain.GetAssemblies()) // Зареждаме нужните библиотеки
-                .WithImports("System", "System.Linq", "System.Collections.Generic");
-
-            var script = await CSharpScript.EvaluateAsync<object>(code, scriptOptions);
-
-            // Ако в кода има метод "RunTests", извикваме го
-            var testMethod = script?.GetType().GetMethod("RunTests");
-            if (testMethod != null)
-            {
-                var testResults = (bool[])testMethod.Invoke(script, null);
-                return testResults;
-            }
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine("Error executing script: " + ex.Message);
-        }
-
-        return new bool[0]; // Ако не можем да изпълним тестовете, връщаме празен масив
-    }
-    */
+    
 }

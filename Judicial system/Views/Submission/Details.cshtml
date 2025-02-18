@@ -1,13 +1,11 @@
 ﻿@model Judicial_system.Data.Submission
 
-<h2>Детайли на решението</h2>
+<h2>Резултат от изпратеното решение</h2>
 
-<p><strong>Задача:</strong> @Model.Task.Title</p>
-<p><strong>Решение подадено от:</strong> @Model.User.UserName</p>
-<p><strong>Дата на подаденото решение:</strong> @Model.SubmissionDate.ToString("dd MMM yyyy HH:mm")</p>
-<p><strong>Резултат:</strong> @Model.Score%</p>
+<p><strong>Дата:</strong> @Model.SubmissionDate</p>
+<p><strong>Оценка:</strong> @Model.Score%</p>
 
-<h3>Изпратен код:</h3>
-<pre>@Model.SourceCode</pre>
+<h3>Вашият код:</h3>
+<pre style="background:#f4f4f4; padding:10px;">@Model.SourceCode</pre>
 
-<a asp-action="Create" class="btn btn-secondary">Назад към решенията</a>
+<a asp-action="Details" asp-controller="Task" asp-route-id="@Model.TaskId">Обратно към задачата</a>
