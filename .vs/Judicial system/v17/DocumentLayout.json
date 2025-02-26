@@ -1,9 +1,9 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Jupiter Soft HP\\Desktop\\Judicial system\\Judicial system\\",
+  "WorkspaceRootPath": "C:\\Users\\Jupiter Soft HP\\Desktop\\project\\JudicialSystem\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{BEFB60E2-2C45-4A71-A0FD-1A8CA1F7B330}|Judicial system\\Judicial system.csproj|c:\\users\\jupiter soft hp\\desktop\\judicial system\\judicial system\\judicial system\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{BEFB60E2-2C45-4A71-A0FD-1A8CA1F7B330}|Judicial system\\Judicial system.csproj|c:\\users\\jupiter soft hp\\desktop\\project\\judicialsystem\\judicial system\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{BEFB60E2-2C45-4A71-A0FD-1A8CA1F7B330}|Judicial system\\Judicial system.csproj|solutionrelative:judicial system\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -24,9 +24,9 @@
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\Jupiter Soft HP\\Desktop\\Judicial system\\Judicial system\\Judicial system\\Program.cs",
+              "DocumentMoniker": "C:\\Users\\Jupiter Soft HP\\Desktop\\project\\JudicialSystem\\Judicial system\\Program.cs",
               "RelativeDocumentMoniker": "Judicial system\\Program.cs",
-              "ToolTip": "C:\\Users\\Jupiter Soft HP\\Desktop\\Judicial system\\Judicial system\\Judicial system\\Program.cs",
+              "ToolTip": "C:\\Users\\Jupiter Soft HP\\Desktop\\project\\JudicialSystem\\Judicial system\\Program.cs",
               "RelativeToolTip": "Judicial system\\Program.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",

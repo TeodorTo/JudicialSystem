@@ -1,6 +1,6 @@
-﻿using Judicial_system.Data;
+﻿using System.Reflection;
+using Judicial_system.Data;
 using Microsoft.CodeAnalysis.CSharp.Scripting;
-//using Microsoft.CodeAnalysis.CSharp.Scripting;
 using Microsoft.CodeAnalysis.Scripting;
 
 namespace Judicial_system.Controllers;
@@ -76,19 +76,25 @@ public class SubmissionController : Controller
 
          string unitTests = task.UnitTestCode;
 
-         // Комбинираме кода на потребителя и тестовете
+         // Лог: Проверяваме дали userCode съдържа Solution
+         Console.WriteLine("User Code: " + userCode);
+         Console.WriteLine("Unit Tests: " + unitTests);
+
          string finalCode = $@"
-        using System;
-        public class Program 
+    using System;
+    public class Program 
+    {{
+        public static bool[] Main()  
         {{
-            public static void Main() 
-            {{
-                var results = TestRunner.RunTests();
-                Console.WriteLine(string.Join("","", results));
-            }}
+            return TestRunner.RunTests(); 
         }}
-        {userCode}
-        {unitTests}";
+    }}
+    {userCode}
+    {unitTests}";
+
+
+         // Лог: Проверяваме финалния код
+         Console.WriteLine("Final Code: " + finalCode);
 
          try
          {
@@ -108,29 +114,40 @@ public class SubmissionController : Controller
 
 
 
+
      private async Task<bool[]> RunTests(string code)
      {
          try
          {
              var scriptOptions = ScriptOptions.Default
-                 .WithReferences(AppDomain.CurrentDomain.GetAssemblies())
-                 .WithImports("System", "System.Linq", "System.Collections.Generic");
+                 .WithReferences(
+                     typeof(object).Assembly,
+                     typeof(Console).Assembly,
+                     typeof(Enumerable).Assembly)
+                 .WithImports("System", "DynamicScript")
+                 .WithImports("System", "System.Linq", "System.Console");
 
-             var result = await CSharpScript.EvaluateAsync<string>(code, scriptOptions);
+             Console.WriteLine("DEBUG: code: => "+code);
+             var result = await CSharpScript.EvaluateAsync<bool[]>(code, scriptOptions);
 
-             // Логваме резултата за дебъг
-             Console.WriteLine("Output: " + result);
 
-             // Парсваме резултатите от Console.WriteLine
-             return result.Split(',').Select(bool.Parse).ToArray();
+             
+             Console.WriteLine("Output: " + result?.ToString());
+             return (result?.ToString()!).Split(',').Select(bool.Parse).ToArray() ?? [];
          }
          catch (Exception ex)
          {
              Console.WriteLine("Error executing script: " + ex.Message);
          }
 
-         return new bool[0];
+         return [];
      }
+
+
+
 
     
 }
+
+
+

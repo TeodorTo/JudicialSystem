@@ -30,3 +30,12 @@ public class Submission
     [ForeignKey(nameof(TaskId))]
     public Task Task { get; set; } = null!;
 }
+
+public class Solution
+{
+    public static int Add(int a, int b)
+    {
+        return a + b;
+    }
+}
+
