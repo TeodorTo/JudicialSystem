@@ -81,16 +81,11 @@ public class SubmissionController : Controller
          Console.WriteLine("Unit Tests: " + unitTests);
 
          string finalCode = $@"
-    using System;
-    public class Program 
-    {{
-        public static bool[] Main()  
-        {{
-            return TestRunner.RunTests(); 
-        }}
-    }}
-    {userCode}
-    {unitTests}";
+using System;
+{userCode}
+{unitTests}
+
+TestRunner.RunTests()";
 
 
          // Лог: Проверяваме финалния код
@@ -123,25 +118,26 @@ public class SubmissionController : Controller
                  .WithReferences(
                      typeof(object).Assembly,
                      typeof(Console).Assembly,
-                     typeof(Enumerable).Assembly)
-                 .WithImports("System", "DynamicScript")
+                     typeof(Enumerable).Assembly,
+                     Assembly.GetExecutingAssembly() 
+                 )
                  .WithImports("System", "System.Linq", "System.Console");
 
-             Console.WriteLine("DEBUG: code: => "+code);
+             Console.WriteLine("DEBUG: code: => " + code);
+        
              var result = await CSharpScript.EvaluateAsync<bool[]>(code, scriptOptions);
 
-
-             
-             Console.WriteLine("Output: " + result?.ToString());
-             return (result?.ToString()!).Split(',').Select(bool.Parse).ToArray() ?? [];
+             Console.WriteLine("Output: " + (result != null ? string.Join(",", result) : "NULL"));
+        
+             return result ?? [];
          }
          catch (Exception ex)
          {
              Console.WriteLine("Error executing script: " + ex.Message);
+             return [];
          }
-
-         return [];
      }
+
 
 
 
