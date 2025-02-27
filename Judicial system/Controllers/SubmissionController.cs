@@ -2,13 +2,14 @@
 using Judicial_system.Data;
 using Microsoft.CodeAnalysis.CSharp.Scripting;
 using Microsoft.CodeAnalysis.Scripting;
-
-namespace Judicial_system.Controllers;
-
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+
+namespace Judicial_system.Controllers;
+
+
 
 [Authorize] 
 public class SubmissionController : Controller
@@ -68,7 +69,7 @@ public class SubmissionController : Controller
     }
 
     
-     //TODO FIX Csharp.Scripting nuget
+  
      private decimal EvaluateSolution(string userCode, int taskId)
      {
          var task = _context.Tasks.Find(taskId);
@@ -82,10 +83,15 @@ public class SubmissionController : Controller
 
          string finalCode = $@"
 using System;
-{userCode}
+public class Solution
+{{
+    {userCode}
+}}
+
 {unitTests}
 
-TestRunner.RunTests()";
+TestRunner testRunner = new TestRunner();
+testRunner.RunTests()";
 
 
          // Лог: Проверяваме финалния код
