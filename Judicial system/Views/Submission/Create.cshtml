@@ -1,16 +1,23 @@
-﻿
-
-
-
-@model Judicial_system.Data.Submission
+﻿@model Judicial_system.Data.Submission
 
 <h2>Решаване на задача</h2>
 
 <form asp-action="Create" method="post">
     <input type="hidden" name="TaskId" value="@Model.TaskId" />
 
-    <label>Вашето решение:</label>
-    <textarea name="SourceCode" class="form-control" rows="10" required></textarea>
+    <div class="mb-3">
+        <label for="TaskType" class="form-label">Тип на задачата:</label>
+        <select id="TaskType" name="TaskType" class="form-select" required>
+            <option value="Method">Метод</option>
+            <option value="Class">Клас</option>
+            <option value="ConsoleIO">Конзолна програма</option>
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label for="SourceCode" class="form-label">Вашето решение:</label>
+        <textarea id="SourceCode" name="SourceCode" class="form-control" rows="10" required></textarea>
+    </div>
 
     <button type="submit" class="btn btn-primary">Изпрати решение</button>
 </form>

@@ -77,6 +77,9 @@ namespace Judicial_system.Data.Migrations
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
 
+                    b.Property<int>("Type")
+                        .HasColumnType("int");
+
                     b.Property<string>("UnitTestCode")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");

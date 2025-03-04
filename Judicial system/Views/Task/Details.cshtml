@@ -15,6 +15,10 @@
 <div>
     <strong>Created At:</strong> @Model.CreatedAt.ToString("g")
 </div>
+<div>
+    <strong>Тип на задачата:</strong> @Model.Type
+</div>
+
 <form asp-action="Create" asp-controller="Submission" method="post">
     <input type="hidden" name="TaskId" value="@Model.Id" />
 

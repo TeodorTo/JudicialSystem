@@ -62,6 +62,7 @@ public class SubmissionController : Controller
         var submission = await _context.Submissions
             .Include(s => s.Task)
             .Include(s => s.User)
+            .Include(s => s.Task)
             .FirstOrDefaultAsync(m => m.Id == id);
 
         if (submission == null) return NotFound();
@@ -70,79 +71,109 @@ public class SubmissionController : Controller
 
     
   
-     private decimal EvaluateSolution(string userCode, int taskId)
-     {
-         var task = _context.Tasks.Find(taskId);
-         if (task == null) return 0;
+    private decimal EvaluateSolution(string userCode, int taskId)
+    {
+        var task = _context.Tasks.Find(taskId);
+        if (task == null) return 0;
 
-         string unitTests = task.UnitTestCode;
+        string finalCode;
 
-         // Лог: Проверяваме дали userCode съдържа Solution
-         Console.WriteLine("User Code: " + userCode);
-         Console.WriteLine("Unit Tests: " + unitTests);
-
-         string finalCode = $@"
+        switch (task.Type)
+        {
+            case TaskType.Method:
+                finalCode = $@"
 using System;
 public class Solution
 {{
     {userCode}
 }}
-
-{unitTests}
-
+{task.UnitTestCode}
 TestRunner testRunner = new TestRunner();
-testRunner.RunTests()";
+testRunner.RunTests();";
+                break;
+
+            case TaskType.Class:
+                finalCode = $@"
+using System;
+{userCode}
+{task.UnitTestCode}
+TestRunner testRunner = new TestRunner();
+testRunner.RunTests();";
+                break;
+
+            case TaskType.ConsoleIO:
+                finalCode = $@"
+using System;
+using System.IO;
+
+public class Program
+{{
+    public static void Main()
+    {{
+        {userCode}
+    }}
+}}";
+
+                break;
+
+            default:
+                return 0;
+        }
+
+        var testResults = RunTests(finalCode).Result;
+
+        if (testResults.Length == 0)
+            return 0;
+
+        // Броим успешните тестове и смятаме резултата в проценти
+        int passedTests = testResults.Count(r => r);
+        decimal score = (decimal)passedTests / testResults.Length * 100;
+
+        return score;
+    }
 
 
-         // Лог: Проверяваме финалния код
-         Console.WriteLine("Final Code: " + finalCode);
-
-         try
-         {
-             var result = RunTests(finalCode).Result;
-
-             int passedTests = result.Count(r => r);
-             int totalTests = result.Length;
-
-             return totalTests > 0 ? (decimal)passedTests / totalTests * 100 : 0;
-         }
-         catch (Exception ex)
-         {
-             Console.WriteLine("Грешка при изпълнението: " + ex.Message);
-             return 0;
-         }
-     }
 
 
 
 
-     private async Task<bool[]> RunTests(string code)
-     {
-         try
-         {
-             var scriptOptions = ScriptOptions.Default
-                 .WithReferences(
-                     typeof(object).Assembly,
-                     typeof(Console).Assembly,
-                     typeof(Enumerable).Assembly,
-                     Assembly.GetExecutingAssembly() 
-                 )
-                 .WithImports("System", "System.Linq", "System.Console");
+    private async Task<bool[]> RunTests(string code)
+    {
+        try
+        {  
+            var scriptOptions = ScriptOptions.Default
+                .WithReferences(
+                    typeof(object).Assembly,
+                    typeof(Console).Assembly,
+                    typeof(Enumerable).Assembly,
+                    Assembly.GetExecutingAssembly()
+                )
+                .WithImports("System", "System.Linq", "System.Console", "System.IO");
 
-             Console.WriteLine("DEBUG: code: => " + code);
-        
-             var result = await CSharpScript.EvaluateAsync<bool[]>(code, scriptOptions);
+            if (code.Contains("Console.ReadLine()"))
+            {
+                // Емулираме входните данни
+                string inputData = "5\n10\n"; // Примерен вход
+                using (StringReader sr = new StringReader(inputData))
+                {
+                    Console.SetIn(sr);
+                    var result = await CSharpScript.EvaluateAsync<bool[]>(code, scriptOptions);
+                    return result ?? [];
+                }
+            }
+            else
+            {
+                var result = await CSharpScript.EvaluateAsync<bool[]>(code, scriptOptions);
+                return result ?? [];
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("Error executing script: " + ex.Message);
+            return [];
+        }
+    }
 
-             Console.WriteLine("Output: " + (result != null ? string.Join(",", result) : "NULL"));
-        
-             return result ?? [];
-         }
-         catch (Exception ex)
-         {
-             Console.WriteLine("Error executing script: " + ex.Message);
-             return [];
-         }
-     }
 
 
 
@@ -150,6 +181,3 @@ testRunner.RunTests()";
 
     
 }
-
-
-

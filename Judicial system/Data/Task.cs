@@ -2,6 +2,13 @@
 
 namespace Judicial_system.Data;
 
+
+public enum TaskType
+{
+    Method,  
+    Class,   
+    ConsoleIO 
+}
 public class Task
 {
     [Key]
@@ -16,6 +23,8 @@ public class Task
 
     [Required]
     public string UnitTestCode { get; set; } = null!; 
+    
+    public TaskType Type { get; set; }  
 
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 }

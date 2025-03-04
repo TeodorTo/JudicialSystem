@@ -2,10 +2,11 @@
 
 <h2>Резултат от изпратеното решение</h2>
 
-<p><strong>Дата:</strong> @Model.SubmissionDate</p>
+<p><strong>Тип на задачата:</strong> @Model.Task.Type</p>
+<p><strong>Дата:</strong> @Model.SubmissionDate.ToString("dd.MM.yyyy HH:mm")</p>
 <p><strong>Оценка:</strong> @Model.Score%</p>
 
 <h3>Вашият код:</h3>
-<pre style="background:#f4f4f4; padding:10px;">@Model.SourceCode</pre>
+<pre style="background:#f4f4f4; padding:10px; border-radius:5px;">@Model.SourceCode</pre>
 
-<a asp-action="Details" asp-controller="Task" asp-route-id="@Model.TaskId">Обратно към задачата</a>
+<a asp-action="Details" asp-controller="Task" asp-route-id="@Model.TaskId" class="btn btn-secondary">Обратно към задачата</a>

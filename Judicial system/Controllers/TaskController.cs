@@ -1,11 +1,11 @@
 ﻿using Judicial_system.Data;
 using Task = Judicial_system.Data.Task;
-
-namespace Judicial_system.Controllers;
-
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+
+namespace Judicial_system.Controllers;
+
 
 [Authorize] 
 public class TaskController : Controller
@@ -91,3 +91,4 @@ public class TaskController : Controller
    
     
 }
+

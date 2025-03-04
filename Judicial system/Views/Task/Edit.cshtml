@@ -1,4 +1,6 @@
-﻿@model Judicial_system.Data.Task
+﻿@using Judicial_system.Data
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model Judicial_system.Data.Task
 
 @{
     ViewData["Title"] = "Edit Task";
@@ -20,6 +22,12 @@
         <textarea asp-for="Description" class="form-control"></textarea>
         <span asp-validation-for="Description" class="text-danger"></span>
     </div>
+    <div class="form-group">
+        <label asp-for="Type">Тип на задачата</label>
+        <select asp-for="Type" class="form-control" asp-items="Html.GetEnumSelectList<TaskType>()"></select>
+        <span asp-validation-for="Type" class="text-danger"></span>
+    </div>
+
 
     <div class="form-group">
         <label asp-for="UnitTestCode">Unit Test Code</label>

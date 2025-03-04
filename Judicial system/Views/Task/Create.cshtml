@@ -1,4 +1,6 @@
-﻿@model Judicial_system.Data.Task
+﻿@using Judicial_system.Data
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model Judicial_system.Data.Task
 
 <h2>Създаване на нова задача</h2>
 
@@ -15,6 +17,11 @@
         <label asp-for="UnitTestCode">Unit Test Code (C#)</label>
         <textarea name="UnitTestCode" class="form-control" rows="10" required></textarea>
     </div>
+    <div class="form-group">
+        <label asp-for="Type">Тип на задачата</label>
+        <select asp-for="Type" class="form-control" asp-items="Html.GetEnumSelectList<TaskType>()"></select>
+    </div>
+
     <button type="submit" class="btn btn-success">Създай задача</button>
 </form>
 
