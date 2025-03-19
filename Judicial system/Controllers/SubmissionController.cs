@@ -74,35 +74,33 @@ public class SubmissionController : Controller
     private decimal EvaluateSolution(string userCode, int taskId)
     {
         var task = _context.Tasks.Find(taskId);
-        if (task == null) return 0;
-
-        string finalCode;
-
-        switch (task.Type)
+        if (task == null)
         {
-            case TaskType.Method:
-                finalCode = $@"
+            Console.WriteLine("Task not found");
+            return 0;
+        }
+
+        string finalCode = task.Type switch
+        {
+            TaskType.Method => $@"
 using System;
+
 public class Solution
 {{
     {userCode}
 }}
-{task.UnitTestCode}
-TestRunner testRunner = new TestRunner();
-testRunner.RunTests();";
-                break;
 
-            case TaskType.Class:
-                finalCode = $@"
+{task.UnitTestCode}
+
+new TestRunner().RunTests()",
+            TaskType.Class => $@"
 using System;
 {userCode}
-{task.UnitTestCode}
-TestRunner testRunner = new TestRunner();
-testRunner.RunTests();";
-                break;
 
-            case TaskType.ConsoleIO:
-                finalCode = $@"
+{task.UnitTestCode}
+
+new TestRunner().RunTests()",
+            TaskType.ConsoleIO => $@"
 using System;
 using System.IO;
 
@@ -112,67 +110,61 @@ public class Program
     {{
         {userCode}
     }}
-}}";
+}}",
+            _ => ""
+        };
 
-                break;
+        Console.WriteLine("Generated code:");
+        Console.WriteLine(finalCode);
 
-            default:
-                return 0;
+        if (string.IsNullOrEmpty(finalCode))
+        {
+            Console.WriteLine("Final code is empty");
+            return 0;
         }
 
         var testResults = RunTests(finalCode).Result;
 
         if (testResults.Length == 0)
+        {
+            Console.WriteLine("Test results empty");
             return 0;
+        }
 
-        // Броим успешните тестове и смятаме резултата в проценти
         int passedTests = testResults.Count(r => r);
         decimal score = (decimal)passedTests / testResults.Length * 100;
+        Console.WriteLine($"Score: {score}% ({passedTests}/{testResults.Length})");
 
         return score;
     }
 
-
-
-
-
-
-    private async Task<bool[]> RunTests(string code)
+private async Task<bool[]> RunTests(string code)
+{
+    try
     {
-        try
-        {  
-            var scriptOptions = ScriptOptions.Default
-                .WithReferences(
-                    typeof(object).Assembly,
-                    typeof(Console).Assembly,
-                    typeof(Enumerable).Assembly,
-                    Assembly.GetExecutingAssembly()
-                )
-                .WithImports("System", "System.Linq", "System.Console", "System.IO");
+        var scriptOptions = ScriptOptions.Default
+            .WithReferences(
+                typeof(object).Assembly,
+                typeof(Console).Assembly,
+                typeof(Enumerable).Assembly,
+                Assembly.GetExecutingAssembly()
+            )
+            .WithImports("System", "System.Linq", "System.Console", "System.IO");
 
-            if (code.Contains("Console.ReadLine()"))
-            {
-                // Емулираме входните данни
-                string inputData = "5\n10\n"; // Примерен вход
-                using (StringReader sr = new StringReader(inputData))
-                {
-                    Console.SetIn(sr);
-                    var result = await CSharpScript.EvaluateAsync<bool[]>(code, scriptOptions);
-                    return result ?? [];
-                }
-            }
-            else
-            {
-                var result = await CSharpScript.EvaluateAsync<bool[]>(code, scriptOptions);
-                return result ?? [];
-            }
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine("Error executing script: " + ex.Message);
-            return [];
-        }
+        var result = await CSharpScript.EvaluateAsync<bool[]>(code, scriptOptions);
+        return result ?? Array.Empty<bool>();
     }
+    catch (CompilationErrorException ex)
+    {
+        Console.WriteLine("Compilation error: " + ex.Message);
+        return Array.Empty<bool>();
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine("Error executing script: " + ex.Message);
+        return Array.Empty<bool>();
+    }
+}
 
 
 
