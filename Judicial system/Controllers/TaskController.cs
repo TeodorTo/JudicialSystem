@@ -44,6 +44,7 @@ public class TaskController : Controller
     {
         if (ModelState.IsValid)
         {
+            task.CreatedAt = DateTime.Now;
             _context.Tasks.Add(task);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));

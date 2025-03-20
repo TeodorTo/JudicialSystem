@@ -24,7 +24,7 @@ public class Task
     [Required]
     public string UnitTestCode { get; set; } = null!; 
     
-    public TaskType Type { get; set; }  
+    public TaskType Type { get; set; } 
 
-    public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+    public DateTime CreatedAt { get; set; }
 }
