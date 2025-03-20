@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "suhCDOoo024hFYert49gpoM/eHr0n2PKjtJODoycnmE=",
+  "Hash": "+rKCFsQpoY74TssfPCiMhph95jPocTDql1+RxJlVd70=",
   "Source": "Judicial system",
   "BasePath": "_content/Judicial system",
   "Mode": "Default",
@@ -2577,6 +2577,48 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\lib\\jquery\\LICENSE.txt"
+    },
+    {
+      "Identity": "C:\\Users\\Jupiter Soft HP\\Desktop\\project\\JudicialSystem\\Judicial system\\wwwroot\\uploads\\Excel 3.xlsx",
+      "SourceId": "Judicial system",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Jupiter Soft HP\\Desktop\\project\\JudicialSystem\\Judicial system\\wwwroot\\",
+      "BasePath": "_content/Judicial system",
+      "RelativePath": "uploads/Excel 3#[.{fingerprint}]?.xlsx",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "sh5tbwbogg",
+      "Integrity": "ENze1MoGrMpsB4YwNt+P9ct0ANIR4m+13ryM45+g3Fc=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\Excel 3.xlsx"
+    },
+    {
+      "Identity": "C:\\Users\\Jupiter Soft HP\\Desktop\\project\\JudicialSystem\\Judicial system\\wwwroot\\uploads\\План ДЗИ.docx",
+      "SourceId": "Judicial system",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Jupiter Soft HP\\Desktop\\project\\JudicialSystem\\Judicial system\\wwwroot\\",
+      "BasePath": "_content/Judicial system",
+      "RelativePath": "uploads/План ДЗИ#[.{fingerprint}]?.docx",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "6j3yd94wu0",
+      "Integrity": "nohIn5B3R7/fjhHBwBwj5b0OZTCOhltS22QjeYuPiO0=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\План ДЗИ.docx"
     }
   ],
   "Endpoints": [
@@ -9881,6 +9923,170 @@
         {
           "Name": "integrity",
           "Value": "sha256-hjIBkvmgxQXbNXK3B9YQ3t06RwLuQSQzC/dpvuB/lMk="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/Excel 3.sh5tbwbogg.xlsx",
+      "AssetFile": "C:\\Users\\Jupiter Soft HP\\Desktop\\project\\JudicialSystem\\Judicial system\\wwwroot\\uploads\\Excel 3.xlsx",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "21458"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"ENze1MoGrMpsB4YwNt+P9ct0ANIR4m+13ryM45+g3Fc=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 20 Mar 2025 09:04:07 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "sh5tbwbogg"
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/Excel 3.xlsx"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-ENze1MoGrMpsB4YwNt+P9ct0ANIR4m+13ryM45+g3Fc="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/Excel 3.xlsx",
+      "AssetFile": "C:\\Users\\Jupiter Soft HP\\Desktop\\project\\JudicialSystem\\Judicial system\\wwwroot\\uploads\\Excel 3.xlsx",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "21458"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"ENze1MoGrMpsB4YwNt+P9ct0ANIR4m+13ryM45+g3Fc=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 20 Mar 2025 09:04:07 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-ENze1MoGrMpsB4YwNt+P9ct0ANIR4m+13ryM45+g3Fc="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/План ДЗИ.6j3yd94wu0.docx",
+      "AssetFile": "C:\\Users\\Jupiter Soft HP\\Desktop\\project\\JudicialSystem\\Judicial system\\wwwroot\\uploads\\План ДЗИ.docx",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "14404"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"nohIn5B3R7/fjhHBwBwj5b0OZTCOhltS22QjeYuPiO0=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 20 Mar 2025 09:00:17 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "6j3yd94wu0"
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/План ДЗИ.docx"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-nohIn5B3R7/fjhHBwBwj5b0OZTCOhltS22QjeYuPiO0="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/План ДЗИ.docx",
+      "AssetFile": "C:\\Users\\Jupiter Soft HP\\Desktop\\project\\JudicialSystem\\Judicial system\\wwwroot\\uploads\\План ДЗИ.docx",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "14404"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"nohIn5B3R7/fjhHBwBwj5b0OZTCOhltS22QjeYuPiO0=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 20 Mar 2025 09:00:17 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-nohIn5B3R7/fjhHBwBwj5b0OZTCOhltS22QjeYuPiO0="
         }
       ]
     }

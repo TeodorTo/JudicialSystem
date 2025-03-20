@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = "Task Details";
+    var isAdmin = User.IsInRole("Admin"); // Проверка дали потребителят е администратор
 }
 
 <h1>@Model.Title</h1>
@@ -10,7 +11,7 @@
     <strong>Description:</strong> @Model.Description
 </div>
 <div>
-    <strong>Unit Test Code:</strong> @Model.UnitTestCode
+    <strong>Unit Test Code:</strong> <pre>@Model.UnitTestCode</pre>
 </div>
 <div>
     <strong>Created At:</strong> @Model.CreatedAt.ToString("g")
@@ -19,18 +20,40 @@
     <strong>Тип на задачата:</strong> @Model.Type
 </div>
 
+<hr />
+
+@if (isAdmin)
+{
+    <h3>Качване на файл:</h3>
+    <form asp-action="UploadFile" asp-controller="Task" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="taskId" value="@Model.Id" />
+        <input type="file" name="file" class="form-control" required />
+        <br />
+        <button type="submit" class="btn btn-success">Качи файл</button>
+    </form>
+}
+
+@if (!string.IsNullOrEmpty(Model.FilePath))
+{
+    <h3>Прикачен файл:</h3>
+    <a href="@Url.Action("DownloadFile", "Task", new { taskId = Model.Id })" class="btn btn-primary">Изтегли файла</a>
+}
+
+<hr />
+
+<h3>Изпращане на решение:</h3>
 <form asp-action="Create" asp-controller="Submission" method="post">
     <input type="hidden" name="TaskId" value="@Model.Id" />
-
     <label for="SourceCode">Вашият код:</label>
     <textarea id="SourceCode" name="SourceCode" class="form-control" required style="width:100%; height:200px;"></textarea>
-
     <br />
     <button type="submit" class="btn btn-primary">Изпрати</button>
 </form>
 
-
 <p>
-    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">Edit</a>
-    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+    @if (isAdmin)
+    {
+        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">Редактирай</a>
+    }
+    <a asp-action="Index" class="btn btn-secondary">Обратно към списъка</a>
 </p>

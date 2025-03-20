@@ -7223,6 +7223,170 @@
           "Value": "sha256-OZVI+w57FGwS9boYCZpH1ZSpcP7pYhLu4KtIUvPlZ4I="
         }
       ]
+    },
+    {
+      "Route": "uploads/Excel 3.sh5tbwbogg.xlsx",
+      "AssetFile": "uploads/Excel 3.xlsx",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "21458"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"ENze1MoGrMpsB4YwNt+P9ct0ANIR4m+13ryM45+g3Fc=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 20 Mar 2025 09:04:07 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "sh5tbwbogg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-ENze1MoGrMpsB4YwNt+P9ct0ANIR4m+13ryM45+g3Fc="
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/Excel 3.xlsx"
+        }
+      ]
+    },
+    {
+      "Route": "uploads/Excel 3.xlsx",
+      "AssetFile": "uploads/Excel 3.xlsx",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "21458"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"ENze1MoGrMpsB4YwNt+P9ct0ANIR4m+13ryM45+g3Fc=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 20 Mar 2025 09:04:07 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-ENze1MoGrMpsB4YwNt+P9ct0ANIR4m+13ryM45+g3Fc="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/План ДЗИ.6j3yd94wu0.docx",
+      "AssetFile": "uploads/План ДЗИ.docx",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "14404"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"nohIn5B3R7/fjhHBwBwj5b0OZTCOhltS22QjeYuPiO0=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 20 Mar 2025 09:00:17 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "6j3yd94wu0"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-nohIn5B3R7/fjhHBwBwj5b0OZTCOhltS22QjeYuPiO0="
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/План ДЗИ.docx"
+        }
+      ]
+    },
+    {
+      "Route": "uploads/План ДЗИ.docx",
+      "AssetFile": "uploads/План ДЗИ.docx",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "14404"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"nohIn5B3R7/fjhHBwBwj5b0OZTCOhltS22QjeYuPiO0=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 20 Mar 2025 09:00:17 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-nohIn5B3R7/fjhHBwBwj5b0OZTCOhltS22QjeYuPiO0="
+        }
+      ]
     }
   ]
 }

@@ -27,4 +27,6 @@ public class Task
     public TaskType Type { get; set; } 
 
     public DateTime CreatedAt { get; set; }
+    
+    public string? FilePath { get; set; }
 }

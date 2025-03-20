@@ -898,6 +898,8 @@ C:\Users\Jupiter Soft HP\Desktop\project\JudicialSystem\Judicial system\obj\Debu
 C:\Users\Jupiter Soft HP\Desktop\project\JudicialSystem\Judicial system\obj\Debug\net8.0\Judicial system.genruntimeconfig.cache
 C:\Users\Jupiter Soft HP\Desktop\project\JudicialSystem\Judicial system\obj\Debug\net8.0\ref\Judicial system.dll
 C:\Users\Jupiter Soft HP\Desktop\project\JudicialSystem\Judicial system\bin\Debug\net8.0\Judicial system.staticwebassets.endpoints.json
+C:\Users\Jupiter Soft HP\Desktop\project\JudicialSystem\Judicial system\obj\Debug\net8.0\staticwebassets.build.endpoints.json
+C:\Users\Jupiter Soft HP\Desktop\project\JudicialSystem\Judicial system\obj\Debug\net8.0\staticwebassets\msbuild.Judicial system.Microsoft.AspNetCore.StaticWebAssetEndpoints.props
 C:\Users\Jupiter Soft HP\Desktop\project\JudicialSystem\Judicial system\bin\Debug\net8.0\Microsoft.CodeAnalysis.CSharp.Scripting.dll
 C:\Users\Jupiter Soft HP\Desktop\project\JudicialSystem\Judicial system\bin\Debug\net8.0\cs\Microsoft.CodeAnalysis.CSharp.Scripting.resources.dll
 C:\Users\Jupiter Soft HP\Desktop\project\JudicialSystem\Judicial system\bin\Debug\net8.0\de\Microsoft.CodeAnalysis.CSharp.Scripting.resources.dll
@@ -912,5 +914,3 @@ C:\Users\Jupiter Soft HP\Desktop\project\JudicialSystem\Judicial system\bin\Debu
 C:\Users\Jupiter Soft HP\Desktop\project\JudicialSystem\Judicial system\bin\Debug\net8.0\tr\Microsoft.CodeAnalysis.CSharp.Scripting.resources.dll
 C:\Users\Jupiter Soft HP\Desktop\project\JudicialSystem\Judicial system\bin\Debug\net8.0\zh-Hans\Microsoft.CodeAnalysis.CSharp.Scripting.resources.dll
 C:\Users\Jupiter Soft HP\Desktop\project\JudicialSystem\Judicial system\bin\Debug\net8.0\zh-Hant\Microsoft.CodeAnalysis.CSharp.Scripting.resources.dll
-C:\Users\Jupiter Soft HP\Desktop\project\JudicialSystem\Judicial system\obj\Debug\net8.0\staticwebassets.build.endpoints.json
-C:\Users\Jupiter Soft HP\Desktop\project\JudicialSystem\Judicial system\obj\Debug\net8.0\staticwebassets\msbuild.Judicial system.Microsoft.AspNetCore.StaticWebAssetEndpoints.props
