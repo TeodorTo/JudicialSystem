@@ -1,8 +1,92 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Home";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="container py-5">
+    <div class="row justify-content-center text-center mb-5">
+        <div class="col-lg-8">
+            <h1 class="display-4 fw-bold mb-3">Welcome to Judicial System</h1>
+            <p class="lead text-muted">
+                A powerful platform for managing programming tasks and submissions
+            </p>
+        </div>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-lg-6">
+            <div class="card shadow-lg">
+                <div class="card-body p-4">
+                    <h2 class="h4 mb-4">Choose Your Programming Language</h2>
+                    <form id="languageForm" asp-controller="Home" asp-action="SetLanguage" method="post">
+                        <div class="row g-3">
+                            <div class="col-12">
+                                <select id="languageSelect" name="language" class="form-select form-select-lg">
+                                    <option value="" selected disabled>Select a language...</option>
+                                    <option value="csharp">C#</option>
+                                    <option value="javascript">JavaScript</option>
+                                    <option value="java">Java</option>
+                                    <option value="python">Python</option>
+                                    <option value="cpp">C++</option>
+                                </select>
+                            </div>
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-primary w-100" disabled id="submitBtn">
+                                    Start Coding <i class="bi bi-arrow-right ms-2"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-5">
+        <div class="col-md-4">
+            <div class="card h-100">
+                <div class="card-body text-center">
+                    <i class="bi bi-code-slash display-4 text-primary mb-3"></i>
+                    <h3 class="h5">Code Practice</h3>
+                    <p class="text-muted">Sharpen your skills with various programming challenges</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card h-100">
+                <div class="card-body text-center">
+                    <i class="bi bi-file-earmark-check display-4 text-primary mb-3"></i>
+                    <h3 class="h5">Task Management</h3>
+                    <p class="text-muted">Organize and track your programming assignments</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card h-100">
+                <div class="card-body text-center">
+                    <i class="bi bi-person-workspace display-4 text-primary mb-3"></i>
+                    <h3 class="h5">Collaboration</h3>
+                    <p class="text-muted">Work together and submit solutions</p>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
+@section Scripts {
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const select = document.getElementById('languageSelect');
+            const submitBtn = document.getElementById('submitBtn');
+
+            // Enable/disable button based on selection
+            select.addEventListener('change', function() {
+                submitBtn.disabled = !this.value;
+            });
+
+            // Optional: If you want to ensure the button state is correct on page load
+            if (!select.value) {
+                submitBtn.disabled = true;
+            }
+        });
+    </script>
+}

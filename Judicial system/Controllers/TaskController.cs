@@ -69,6 +69,7 @@ public class TaskController : Controller
 
         if (ModelState.IsValid)
         {
+            task.CreatedAt = DateTime.Now;
             _context.Update(task);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
@@ -90,7 +91,7 @@ public class TaskController : Controller
                 var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", task.FilePath.TrimStart('/'));
                 if (System.IO.File.Exists(filePath))
                 {
-                    System.IO.File.Delete(filePath); // Изтриване на файла от сървъра
+                    System.IO.File.Delete(filePath); 
                 }
             }
 
@@ -113,7 +114,7 @@ public class TaskController : Controller
         if (file != null && file.Length > 0)
         {
             var uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "uploads");
-            Directory.CreateDirectory(uploadsFolder); // Създава папката, ако не съществува
+            Directory.CreateDirectory(uploadsFolder); 
 
             var filePath = Path.Combine(uploadsFolder, file.FileName);
             using (var stream = new FileStream(filePath, FileMode.Create))

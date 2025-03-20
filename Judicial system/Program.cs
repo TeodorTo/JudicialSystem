@@ -5,7 +5,6 @@ using Task = System.Threading.Tasks.Task;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Конфигуриране на връзката към базата данни
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") 
     ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
 
@@ -14,12 +13,19 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-// Конфигуриране на Identity с роли
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-    .AddRoles<IdentityRole>() // Важно! Добавя поддръжка на роли
+    .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>();
 
 builder.Services.AddControllersWithViews();
+
+// Add session services
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(30);
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+});
 
 var app = builder.Build();
 
@@ -36,8 +42,11 @@ else
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
+// Add session middleware before authentication and routing
+app.UseSession();
+
 app.UseRouting();
-app.UseAuthentication(); // Важно за работа с Identity
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(
@@ -46,7 +55,6 @@ app.MapControllerRoute(
 
 app.MapRazorPages();
 
-// Инициализация на ролите и администраторския акаунт
 using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
@@ -55,22 +63,19 @@ using (var scope = app.Services.CreateScope())
 
 app.Run();
 
-// Метод за инициализиране на роли и създаване на администраторски акаунт
 static async Task InitializeRoles(IServiceProvider serviceProvider)
 {
     var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
     var userManager = serviceProvider.GetRequiredService<UserManager<IdentityUser>>();
 
-    string adminEmail = "admin@example.com"; // Смени с твоя имейл
-    string adminPassword = "Admin@123"; // Използвай по-сигурна парола
+    string adminEmail = "admin@example.com";
+    string adminPassword = "Admin@123";
 
-    // Създаване на ролята "Admin", ако не съществува
     if (!await roleManager.RoleExistsAsync("Admin"))
     {
         await roleManager.CreateAsync(new IdentityRole("Admin"));
     }
 
-    // Проверка дали администраторът вече съществува
     var adminUser = await userManager.FindByEmailAsync(adminEmail);
     if (adminUser == null)
     {

@@ -249,10 +249,6 @@
       "PackagePath": "staticwebassets\\uploads\\Excel 3.xlsx"
     },
     {
-      "Id": "C:\\Users\\Jupiter Soft HP\\Desktop\\project\\JudicialSystem\\Judicial system\\wwwroot\\uploads\\План ДЗИ.docx",
-      "PackagePath": "staticwebassets\\uploads\\План ДЗИ.docx"
-    },
-    {
       "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.Judicial system.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",
       "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssetEndpoints.props"
     },

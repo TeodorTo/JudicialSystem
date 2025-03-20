@@ -1,59 +1,62 @@
 ﻿@model Judicial_system.Data.Task
-
 @{
     ViewData["Title"] = "Task Details";
-    var isAdmin = User.IsInRole("Admin"); // Проверка дали потребителят е администратор
+    var isAdmin = User.IsInRole("Admin");
 }
 
-<h1>@Model.Title</h1>
+<div class="card">
+    <div class="card-header bg-info text-white">
+        <h1 class="h4 mb-0">@Model.Title</h1>
+    </div>
+    <div class="card-body">
+        <dl class="row">
+            <dt class="col-sm-3">Description:</dt>
+            <dd class="col-sm-9">@Model.Description</dd>
 
-<div>
-    <strong>Description:</strong> @Model.Description
+            <dt class="col-sm-3">Unit Test Code:</dt>
+            <dd class="col-sm-9"><pre>@Model.UnitTestCode</pre></dd>
+
+            <dt class="col-sm-3">Created At:</dt>
+            <dd class="col-sm-9">@Model.CreatedAt.ToString("g")</dd>
+
+            <dt class="col-sm-3">Type:</dt>
+            <dd class="col-sm-9">@Model.Type</dd>
+        </dl>
+
+        @if (isAdmin)
+        {
+            <h3 class="mt-4">Upload File:</h3>
+            <form asp-action="UploadFile" asp-controller="Task" method="post" enctype="multipart/form-data" class="mb-4">
+                <input type="hidden" name="taskId" value="@Model.Id" />
+                <div class="input-group">
+                    <input type="file" name="file" class="form-control" required />
+                    <button type="submit" class="btn btn-success">Upload</button>
+                </div>
+            </form>
+        }
+
+        @if (!string.IsNullOrEmpty(Model.FilePath))
+        {
+            <h3>Attached File:</h3>
+            <a href="@Url.Action("DownloadFile", "Task", new { taskId = Model.Id })" class="btn btn-primary mb-4">Download File</a>
+        }
+
+        <h3>Submit Solution:</h3>
+        <form asp-action="Create" asp-controller="Submission" method="post">
+            <input type="hidden" name="TaskId" value="@Model.Id" />
+            <div class="mb-3">
+                <label for="SourceCode" class="form-label fw-bold">Your Code:</label>
+                <textarea id="SourceCode" name="SourceCode" class="form-control" rows="8" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+
+        <div class="mt-4 d-flex gap-2">
+            @if (isAdmin)
+            {
+                <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">Edit</a>
+            }
+            <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+        </div>
+    </div>
 </div>
-<div>
-    <strong>Unit Test Code:</strong> <pre>@Model.UnitTestCode</pre>
-</div>
-<div>
-    <strong>Created At:</strong> @Model.CreatedAt.ToString("g")
-</div>
-<div>
-    <strong>Тип на задачата:</strong> @Model.Type
-</div>
-
-<hr />
-
-@if (isAdmin)
-{
-    <h3>Качване на файл:</h3>
-    <form asp-action="UploadFile" asp-controller="Task" method="post" enctype="multipart/form-data">
-        <input type="hidden" name="taskId" value="@Model.Id" />
-        <input type="file" name="file" class="form-control" required />
-        <br />
-        <button type="submit" class="btn btn-success">Качи файл</button>
-    </form>
-}
-
-@if (!string.IsNullOrEmpty(Model.FilePath))
-{
-    <h3>Прикачен файл:</h3>
-    <a href="@Url.Action("DownloadFile", "Task", new { taskId = Model.Id })" class="btn btn-primary">Изтегли файла</a>
-}
-
-<hr />
-
-<h3>Изпращане на решение:</h3>
-<form asp-action="Create" asp-controller="Submission" method="post">
-    <input type="hidden" name="TaskId" value="@Model.Id" />
-    <label for="SourceCode">Вашият код:</label>
-    <textarea id="SourceCode" name="SourceCode" class="form-control" required style="width:100%; height:200px;"></textarea>
-    <br />
-    <button type="submit" class="btn btn-primary">Изпрати</button>
-</form>
-
-<p>
-    @if (isAdmin)
-    {
-        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">Редактирай</a>
-    }
-    <a asp-action="Index" class="btn btn-secondary">Обратно към списъка</a>
-</p>
