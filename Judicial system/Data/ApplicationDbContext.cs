@@ -14,6 +14,7 @@ namespace Judicial_system.Data
         public DbSet<Task> Tasks { get; set; }
         public DbSet<Submission> Submissions { get; set; }
 
+        public DbSet<Topic> Topics { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -36,6 +37,12 @@ namespace Judicial_system.Data
             modelBuilder.Entity<Submission>()
                 .Property(s => s.Score)
                 .HasPrecision(18, 2);
+            
+            modelBuilder.Entity<Task>()
+                .HasOne(t => t.Topic)
+                .WithMany(t => t.Tasks)
+                .HasForeignKey(t => t.TopicId)
+                .OnDelete(DeleteBehavior.Restrict);
 
         }
     }

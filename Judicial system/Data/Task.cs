@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Judicial_system.Data;
 
@@ -29,4 +30,10 @@ public class Task
     public DateTime CreatedAt { get; set; }
     
     public string? FilePath { get; set; }
+    
+    [Required]
+    public int TopicId { get; set; }
+
+    [ForeignKey(nameof(TopicId))]
+    public Topic Topic { get; set; } = null!; 
 }

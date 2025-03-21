@@ -62,10 +62,6 @@
               "target": "Package",
               "version": "[8.0.14, )"
             },
-            "Microsoft.CodeAnalysis.CSharp.Scripting": {
-              "target": "Package",
-              "version": "[4.13.0, )"
-            },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
               "version": "[8.0.14, )"
