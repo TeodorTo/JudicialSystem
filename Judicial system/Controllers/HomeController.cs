@@ -29,7 +29,8 @@ public class HomeController : Controller
             // Redirect to Task page if C# is selected, otherwise back to home for now
             if (language.ToLower() == "csharp")
             {
-                return Redirect("https://localhost:44363/Task");
+                return RedirectToAction("Index", "Task");
+
             }
             // For other languages, return to home page (to be implemented later)
             return RedirectToAction("Index");
