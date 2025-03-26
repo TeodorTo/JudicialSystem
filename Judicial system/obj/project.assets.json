@@ -8120,19 +8120,19 @@
     ]
   },
   "packageFolders": {
-    "/root/.nuget/packages/": {}
+    "C:\\Users\\katar\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/var/www/JudicialSystem/Judicial system/Judicial system.csproj",
+      "projectUniqueName": "C:\\Users\\katar\\RiderProjects\\JudicialSystem\\Judicial system\\Judicial system.csproj",
       "projectName": "Judicial system",
-      "projectPath": "/var/www/JudicialSystem/Judicial system/Judicial system.csproj",
-      "packagesPath": "/root/.nuget/packages/",
-      "outputPath": "/var/www/JudicialSystem/Judicial system/obj/",
+      "projectPath": "C:\\Users\\katar\\RiderProjects\\JudicialSystem\\Judicial system\\Judicial system.csproj",
+      "packagesPath": "C:\\Users\\katar\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\katar\\RiderProjects\\JudicialSystem\\Judicial system\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/root/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\katar\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
@@ -8235,7 +8235,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/8.0.407/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Users\\katar\\.dotnet\\sdk\\8.0.404/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
