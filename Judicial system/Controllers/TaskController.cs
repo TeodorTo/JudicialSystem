@@ -113,7 +113,7 @@ public class TaskController : Controller
 
         if (file != null && file.Length > 0)
         {
-            var uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "uploads");
+            var uploadsFolder = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "wwwroot", "uploads");
             Directory.CreateDirectory(uploadsFolder); 
 
             var filePath = Path.Combine(uploadsFolder, file.FileName);
