@@ -1,0 +1,285 @@
+/var/www/JudicialSystem/Judicial system/obj/Release/net8.0/Judicial system.csproj.AssemblyReference.cache
+/var/www/JudicialSystem/Judicial system/obj/Release/net8.0/Judicial system.GeneratedMSBuildEditorConfig.editorconfig
+/var/www/JudicialSystem/Judicial system/obj/Release/net8.0/Judicial system.AssemblyInfoInputs.cache
+/var/www/JudicialSystem/Judicial system/obj/Release/net8.0/Judicial system.AssemblyInfo.cs
+/var/www/JudicialSystem/Judicial system/obj/Release/net8.0/Judicial system.csproj.CoreCompileInputs.cache
+/var/www/JudicialSystem/Judicial system/obj/Release/net8.0/Judicial system.MvcApplicationPartsAssemblyInfo.cs
+/var/www/JudicialSystem/Judicial system/obj/Release/net8.0/Judicial system.MvcApplicationPartsAssemblyInfo.cache
+/var/www/JudicialSystem/Judicial system/obj/Release/net8.0/Judicial system.RazorAssemblyInfo.cache
+/var/www/JudicialSystem/Judicial system/obj/Release/net8.0/Judicial system.RazorAssemblyInfo.cs
+/var/www/JudicialSystem/Judicial system/obj/Release/net8.0/Judicial system.sourcelink.json
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/appsettings.Development.json
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/appsettings.json
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/Judicial system.staticwebassets.runtime.json
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/Judicial system
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/Judicial system.deps.json
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/Judicial system.runtimeconfig.json
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/Judicial system.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/Judicial system.pdb
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/Azure.Core.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/Azure.Identity.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/Humanizer.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/Microsoft.AspNetCore.Cryptography.Internal.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/Microsoft.AspNetCore.Identity.UI.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/Microsoft.AspNetCore.Razor.Language.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/Microsoft.Bcl.AsyncInterfaces.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/Microsoft.Build.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/Microsoft.Build.Framework.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/Microsoft.CodeAnalysis.AnalyzerUtilities.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/Microsoft.CodeAnalysis.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/Microsoft.CodeAnalysis.CSharp.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/Microsoft.CodeAnalysis.CSharp.Features.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/Microsoft.CodeAnalysis.CSharp.Scripting.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/Microsoft.CodeAnalysis.CSharp.Workspaces.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/Microsoft.CodeAnalysis.Elfie.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/Microsoft.CodeAnalysis.Features.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/Microsoft.CodeAnalysis.Razor.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/Microsoft.CodeAnalysis.Scripting.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/Microsoft.CodeAnalysis.Workspaces.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/Microsoft.Data.SqlClient.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/Microsoft.DiaSymReader.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/Microsoft.DotNet.Scaffolding.Shared.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/Microsoft.EntityFrameworkCore.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/Microsoft.EntityFrameworkCore.Abstractions.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/Microsoft.EntityFrameworkCore.Design.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/Microsoft.EntityFrameworkCore.Relational.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/Microsoft.EntityFrameworkCore.SqlServer.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/Microsoft.Extensions.Caching.Memory.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/Microsoft.Extensions.DependencyInjection.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/Microsoft.Extensions.DependencyModel.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/Microsoft.Extensions.FileProviders.Embedded.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/Microsoft.Extensions.Identity.Core.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/Microsoft.Extensions.Identity.Stores.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/Microsoft.Extensions.Logging.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/Microsoft.Extensions.Logging.Abstractions.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/Microsoft.Extensions.Options.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/Microsoft.Identity.Client.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/Microsoft.Identity.Client.Extensions.Msal.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/Microsoft.IdentityModel.Abstractions.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/Microsoft.IdentityModel.JsonWebTokens.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/Microsoft.IdentityModel.Logging.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/Microsoft.IdentityModel.Protocols.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/Microsoft.IdentityModel.Tokens.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/Microsoft.NET.StringTools.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/Microsoft.SqlServer.Server.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/Microsoft.VisualStudio.Web.CodeGeneration.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/Microsoft.VisualStudio.Web.CodeGeneration.Core.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/dotnet-aspnet-codegenerator-design.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/Microsoft.VisualStudio.Web.CodeGeneration.EntityFrameworkCore.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/Microsoft.VisualStudio.Web.CodeGeneration.Templating.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/Microsoft.VisualStudio.Web.CodeGeneration.Utils.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/Microsoft.VisualStudio.Web.CodeGenerators.Mvc.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/Mono.TextTemplating.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/Newtonsoft.Json.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/NuGet.Common.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/NuGet.Configuration.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/NuGet.DependencyResolver.Core.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/NuGet.Frameworks.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/NuGet.LibraryModel.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/NuGet.Packaging.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/NuGet.ProjectModel.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/NuGet.Protocol.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/NuGet.Versioning.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/System.ClientModel.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/System.CodeDom.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/System.Composition.AttributedModel.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/System.Composition.Convention.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/System.Composition.Hosting.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/System.Composition.Runtime.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/System.Composition.TypedParts.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/System.Configuration.ConfigurationManager.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/System.IdentityModel.Tokens.Jwt.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/System.Memory.Data.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/System.Reflection.MetadataLoadContext.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/System.Runtime.Caching.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/System.Security.Cryptography.ProtectedData.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/af/Humanizer.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/ar/Humanizer.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/az/Humanizer.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/bg/Humanizer.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/bn-BD/Humanizer.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/cs/Humanizer.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/da/Humanizer.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/de/Humanizer.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/el/Humanizer.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/es/Humanizer.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/fa/Humanizer.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/fi-FI/Humanizer.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/fr/Humanizer.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/fr-BE/Humanizer.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/he/Humanizer.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/hr/Humanizer.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/hu/Humanizer.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/hy/Humanizer.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/id/Humanizer.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/is/Humanizer.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/it/Humanizer.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/ja/Humanizer.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/ko-KR/Humanizer.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/ku/Humanizer.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/lv/Humanizer.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/ms-MY/Humanizer.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/mt/Humanizer.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/nb/Humanizer.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/nb-NO/Humanizer.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/nl/Humanizer.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/pl/Humanizer.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/pt/Humanizer.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/ro/Humanizer.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/ru/Humanizer.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/sk/Humanizer.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/sl/Humanizer.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/sr/Humanizer.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/sr-Latn/Humanizer.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/sv/Humanizer.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/th-TH/Humanizer.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/tr/Humanizer.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/uk/Humanizer.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/uz-Cyrl-UZ/Humanizer.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/uz-Latn-UZ/Humanizer.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/vi/Humanizer.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/zh-CN/Humanizer.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/zh-Hans/Humanizer.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/zh-Hant/Humanizer.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/cs/Microsoft.CodeAnalysis.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/de/Microsoft.CodeAnalysis.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/es/Microsoft.CodeAnalysis.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/fr/Microsoft.CodeAnalysis.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/it/Microsoft.CodeAnalysis.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/ja/Microsoft.CodeAnalysis.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/ko/Microsoft.CodeAnalysis.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/pl/Microsoft.CodeAnalysis.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/pt-BR/Microsoft.CodeAnalysis.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/ru/Microsoft.CodeAnalysis.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/tr/Microsoft.CodeAnalysis.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/zh-Hans/Microsoft.CodeAnalysis.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/zh-Hant/Microsoft.CodeAnalysis.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/cs/Microsoft.CodeAnalysis.CSharp.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/de/Microsoft.CodeAnalysis.CSharp.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/es/Microsoft.CodeAnalysis.CSharp.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/fr/Microsoft.CodeAnalysis.CSharp.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/it/Microsoft.CodeAnalysis.CSharp.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/ja/Microsoft.CodeAnalysis.CSharp.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/ko/Microsoft.CodeAnalysis.CSharp.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/pl/Microsoft.CodeAnalysis.CSharp.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/pt-BR/Microsoft.CodeAnalysis.CSharp.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/ru/Microsoft.CodeAnalysis.CSharp.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/tr/Microsoft.CodeAnalysis.CSharp.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/zh-Hans/Microsoft.CodeAnalysis.CSharp.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/zh-Hant/Microsoft.CodeAnalysis.CSharp.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/cs/Microsoft.CodeAnalysis.CSharp.Features.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/de/Microsoft.CodeAnalysis.CSharp.Features.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/es/Microsoft.CodeAnalysis.CSharp.Features.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/fr/Microsoft.CodeAnalysis.CSharp.Features.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/it/Microsoft.CodeAnalysis.CSharp.Features.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/ja/Microsoft.CodeAnalysis.CSharp.Features.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/ko/Microsoft.CodeAnalysis.CSharp.Features.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/pl/Microsoft.CodeAnalysis.CSharp.Features.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/pt-BR/Microsoft.CodeAnalysis.CSharp.Features.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/ru/Microsoft.CodeAnalysis.CSharp.Features.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/tr/Microsoft.CodeAnalysis.CSharp.Features.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/zh-Hans/Microsoft.CodeAnalysis.CSharp.Features.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/zh-Hant/Microsoft.CodeAnalysis.CSharp.Features.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/cs/Microsoft.CodeAnalysis.CSharp.Scripting.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/de/Microsoft.CodeAnalysis.CSharp.Scripting.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/es/Microsoft.CodeAnalysis.CSharp.Scripting.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/fr/Microsoft.CodeAnalysis.CSharp.Scripting.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/it/Microsoft.CodeAnalysis.CSharp.Scripting.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/ja/Microsoft.CodeAnalysis.CSharp.Scripting.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/ko/Microsoft.CodeAnalysis.CSharp.Scripting.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/pl/Microsoft.CodeAnalysis.CSharp.Scripting.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/pt-BR/Microsoft.CodeAnalysis.CSharp.Scripting.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/ru/Microsoft.CodeAnalysis.CSharp.Scripting.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/tr/Microsoft.CodeAnalysis.CSharp.Scripting.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/zh-Hans/Microsoft.CodeAnalysis.CSharp.Scripting.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/zh-Hant/Microsoft.CodeAnalysis.CSharp.Scripting.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/cs/Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/de/Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/es/Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/fr/Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/it/Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/ja/Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/ko/Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/pl/Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/pt-BR/Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/ru/Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/tr/Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/zh-Hans/Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/zh-Hant/Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/cs/Microsoft.CodeAnalysis.Features.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/de/Microsoft.CodeAnalysis.Features.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/es/Microsoft.CodeAnalysis.Features.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/fr/Microsoft.CodeAnalysis.Features.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/it/Microsoft.CodeAnalysis.Features.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/ja/Microsoft.CodeAnalysis.Features.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/ko/Microsoft.CodeAnalysis.Features.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/pl/Microsoft.CodeAnalysis.Features.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/pt-BR/Microsoft.CodeAnalysis.Features.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/ru/Microsoft.CodeAnalysis.Features.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/tr/Microsoft.CodeAnalysis.Features.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/zh-Hans/Microsoft.CodeAnalysis.Features.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/zh-Hant/Microsoft.CodeAnalysis.Features.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/cs/Microsoft.CodeAnalysis.Scripting.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/de/Microsoft.CodeAnalysis.Scripting.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/es/Microsoft.CodeAnalysis.Scripting.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/fr/Microsoft.CodeAnalysis.Scripting.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/it/Microsoft.CodeAnalysis.Scripting.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/ja/Microsoft.CodeAnalysis.Scripting.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/ko/Microsoft.CodeAnalysis.Scripting.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/pl/Microsoft.CodeAnalysis.Scripting.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/pt-BR/Microsoft.CodeAnalysis.Scripting.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/ru/Microsoft.CodeAnalysis.Scripting.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/tr/Microsoft.CodeAnalysis.Scripting.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/zh-Hans/Microsoft.CodeAnalysis.Scripting.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/zh-Hant/Microsoft.CodeAnalysis.Scripting.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/cs/Microsoft.CodeAnalysis.Workspaces.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/de/Microsoft.CodeAnalysis.Workspaces.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/es/Microsoft.CodeAnalysis.Workspaces.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/fr/Microsoft.CodeAnalysis.Workspaces.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/it/Microsoft.CodeAnalysis.Workspaces.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/ja/Microsoft.CodeAnalysis.Workspaces.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/ko/Microsoft.CodeAnalysis.Workspaces.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/pl/Microsoft.CodeAnalysis.Workspaces.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/pt-BR/Microsoft.CodeAnalysis.Workspaces.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/ru/Microsoft.CodeAnalysis.Workspaces.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/tr/Microsoft.CodeAnalysis.Workspaces.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/zh-Hans/Microsoft.CodeAnalysis.Workspaces.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/zh-Hant/Microsoft.CodeAnalysis.Workspaces.resources.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/runtimes/unix/lib/net6.0/Microsoft.Data.SqlClient.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/runtimes/win/lib/net6.0/Microsoft.Data.SqlClient.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/runtimes/win-arm/native/Microsoft.Data.SqlClient.SNI.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/runtimes/win-arm64/native/Microsoft.Data.SqlClient.SNI.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/runtimes/win-x64/native/Microsoft.Data.SqlClient.SNI.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/runtimes/win-x86/native/Microsoft.Data.SqlClient.SNI.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/runtimes/win/lib/net6.0/System.Runtime.Caching.dll
+/var/www/JudicialSystem/Judicial system/obj/Release/net8.0/staticwebassets.build.json
+/var/www/JudicialSystem/Judicial system/obj/Release/net8.0/staticwebassets.development.json
+/var/www/JudicialSystem/Judicial system/obj/Release/net8.0/staticwebassets/msbuild.Judicial system.Microsoft.AspNetCore.StaticWebAssets.props
+/var/www/JudicialSystem/Judicial system/obj/Release/net8.0/staticwebassets/msbuild.build.Judicial system.props
+/var/www/JudicialSystem/Judicial system/obj/Release/net8.0/staticwebassets/msbuild.buildMultiTargeting.Judicial system.props
+/var/www/JudicialSystem/Judicial system/obj/Release/net8.0/staticwebassets/msbuild.buildTransitive.Judicial system.props
+/var/www/JudicialSystem/Judicial system/obj/Release/net8.0/staticwebassets.pack.json
+/var/www/JudicialSystem/Judicial system/obj/Release/net8.0/scopedcss/Views/Shared/_Layout.cshtml.rz.scp.css
+/var/www/JudicialSystem/Judicial system/obj/Release/net8.0/scopedcss/bundle/Judicial system.styles.css
+/var/www/JudicialSystem/Judicial system/obj/Release/net8.0/scopedcss/projectbundle/Judicial system.bundle.scp.css
+/var/www/JudicialSystem/Judicial system/obj/Release/net8.0/Judicial.6B821AB5.Up2Date
+/var/www/JudicialSystem/Judicial system/obj/Release/net8.0/Judicial system.dll
+/var/www/JudicialSystem/Judicial system/obj/Release/net8.0/refint/Judicial system.dll
+/var/www/JudicialSystem/Judicial system/obj/Release/net8.0/Judicial system.pdb
+/var/www/JudicialSystem/Judicial system/obj/Release/net8.0/Judicial system.genruntimeconfig.cache
+/var/www/JudicialSystem/Judicial system/obj/Release/net8.0/ref/Judicial system.dll
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/publish/web.config
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/publish/appsettings.Development.json
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/publish/appsettings.json
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/publish/Judicial system.deps.json
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/publish/Judicial system.runtimeconfig.json
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/publish/publish/web.config
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/publish/publish/appsettings.Development.json
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/publish/publish/appsettings.json
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/publish/publish/Judicial system.deps.json
+/var/www/JudicialSystem/Judicial system/bin/Release/net8.0/publish/publish/Judicial system.runtimeconfig.json

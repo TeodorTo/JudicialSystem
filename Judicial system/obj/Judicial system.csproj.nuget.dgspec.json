@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\katar\\RiderProjects\\JudicialSystem\\Judicial system\\Judicial system.csproj": {}
+    "/var/www/JudicialSystem/Judicial system/Judicial system.csproj": {}
   },
   "projects": {
-    "C:\\Users\\katar\\RiderProjects\\JudicialSystem\\Judicial system\\Judicial system.csproj": {
+    "/var/www/JudicialSystem/Judicial system/Judicial system.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\katar\\RiderProjects\\JudicialSystem\\Judicial system\\Judicial system.csproj",
+        "projectUniqueName": "/var/www/JudicialSystem/Judicial system/Judicial system.csproj",
         "projectName": "Judicial system",
-        "projectPath": "C:\\Users\\katar\\RiderProjects\\JudicialSystem\\Judicial system\\Judicial system.csproj",
-        "packagesPath": "C:\\Users\\katar\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\katar\\RiderProjects\\JudicialSystem\\Judicial system\\obj\\",
+        "projectPath": "/var/www/JudicialSystem/Judicial system/Judicial system.csproj",
+        "packagesPath": "/root/.nuget/packages/",
+        "outputPath": "/var/www/JudicialSystem/Judicial system/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\katar\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "/root/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -55,7 +55,31 @@
               "target": "Package",
               "version": "[8.0.14, )"
             },
+            "Microsoft.CodeAnalysis.CSharp": {
+              "target": "Package",
+              "version": "[4.13.0, )"
+            },
+            "Microsoft.CodeAnalysis.CSharp.Features": {
+              "target": "Package",
+              "version": "[4.13.0, )"
+            },
             "Microsoft.CodeAnalysis.CSharp.Scripting": {
+              "target": "Package",
+              "version": "[4.13.0, )"
+            },
+            "Microsoft.CodeAnalysis.CSharp.Workspaces": {
+              "target": "Package",
+              "version": "[4.13.0, )"
+            },
+            "Microsoft.CodeAnalysis.Common": {
+              "target": "Package",
+              "version": "[4.13.0, )"
+            },
+            "Microsoft.CodeAnalysis.Features": {
+              "target": "Package",
+              "version": "[4.13.0, )"
+            },
+            "Microsoft.CodeAnalysis.Workspaces.Common": {
               "target": "Package",
               "version": "[4.13.0, )"
             },
@@ -93,7 +117,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Users\\katar\\.dotnet\\sdk\\8.0.404/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/8.0.407/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
