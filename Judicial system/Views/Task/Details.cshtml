@@ -8,7 +8,7 @@
     <div class="card-header bg-info text-white">
         <h1 class="h4 mb-0">@Model.Title</h1>
     </div>
-    <div class="card-body">
+    <div class="ifera card-body">
         <dl class="row">
             <dt class="col-sm-3">Description:</dt>
             <dd class="col-sm-9">@Model.Description</dd>
@@ -35,7 +35,7 @@
             </form>
         }
 
-        @if (!string.IsNullOrEmpty(Model.FilePath))
+        @if (Model.FileContent != null && Model.FileContent.Length > 0)
         {
             <h3>Attached File:</h3>
             <a href="@Url.Action("DownloadFile", "Task", new { taskId = Model.Id })" class="btn btn-primary mb-4">Download File</a>

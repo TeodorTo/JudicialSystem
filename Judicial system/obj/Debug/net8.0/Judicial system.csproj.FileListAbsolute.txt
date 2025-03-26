@@ -955,7 +955,6 @@ C:\Users\katar\RiderProjects\JudicialSystem\Judicial system\bin\Debug\net8.0\Mic
 C:\Users\katar\RiderProjects\JudicialSystem\Judicial system\bin\Debug\net8.0\Microsoft.VisualStudio.Web.CodeGeneration.Templating.dll
 C:\Users\katar\RiderProjects\JudicialSystem\Judicial system\bin\Debug\net8.0\Microsoft.VisualStudio.Web.CodeGeneration.Utils.dll
 C:\Users\katar\RiderProjects\JudicialSystem\Judicial system\bin\Debug\net8.0\Microsoft.VisualStudio.Web.CodeGenerators.Mvc.dll
-C:\Users\katar\RiderProjects\JudicialSystem\Judicial system\bin\Debug\net8.0\Microsoft.Win32.SystemEvents.dll
 C:\Users\katar\RiderProjects\JudicialSystem\Judicial system\bin\Debug\net8.0\Mono.TextTemplating.dll
 C:\Users\katar\RiderProjects\JudicialSystem\Judicial system\bin\Debug\net8.0\Newtonsoft.Json.dll
 C:\Users\katar\RiderProjects\JudicialSystem\Judicial system\bin\Debug\net8.0\NuGet.Common.dll
@@ -975,15 +974,11 @@ C:\Users\katar\RiderProjects\JudicialSystem\Judicial system\bin\Debug\net8.0\Sys
 C:\Users\katar\RiderProjects\JudicialSystem\Judicial system\bin\Debug\net8.0\System.Composition.Runtime.dll
 C:\Users\katar\RiderProjects\JudicialSystem\Judicial system\bin\Debug\net8.0\System.Composition.TypedParts.dll
 C:\Users\katar\RiderProjects\JudicialSystem\Judicial system\bin\Debug\net8.0\System.Configuration.ConfigurationManager.dll
-C:\Users\katar\RiderProjects\JudicialSystem\Judicial system\bin\Debug\net8.0\System.Drawing.Common.dll
-C:\Users\katar\RiderProjects\JudicialSystem\Judicial system\bin\Debug\net8.0\System.Formats.Asn1.dll
 C:\Users\katar\RiderProjects\JudicialSystem\Judicial system\bin\Debug\net8.0\System.IdentityModel.Tokens.Jwt.dll
 C:\Users\katar\RiderProjects\JudicialSystem\Judicial system\bin\Debug\net8.0\System.Memory.Data.dll
 C:\Users\katar\RiderProjects\JudicialSystem\Judicial system\bin\Debug\net8.0\System.Reflection.MetadataLoadContext.dll
 C:\Users\katar\RiderProjects\JudicialSystem\Judicial system\bin\Debug\net8.0\System.Runtime.Caching.dll
 C:\Users\katar\RiderProjects\JudicialSystem\Judicial system\bin\Debug\net8.0\System.Security.Cryptography.ProtectedData.dll
-C:\Users\katar\RiderProjects\JudicialSystem\Judicial system\bin\Debug\net8.0\System.Security.Permissions.dll
-C:\Users\katar\RiderProjects\JudicialSystem\Judicial system\bin\Debug\net8.0\System.Windows.Extensions.dll
 C:\Users\katar\RiderProjects\JudicialSystem\Judicial system\bin\Debug\net8.0\af\Humanizer.resources.dll
 C:\Users\katar\RiderProjects\JudicialSystem\Judicial system\bin\Debug\net8.0\ar\Humanizer.resources.dll
 C:\Users\katar\RiderProjects\JudicialSystem\Judicial system\bin\Debug\net8.0\az\Humanizer.resources.dll
@@ -1142,11 +1137,7 @@ C:\Users\katar\RiderProjects\JudicialSystem\Judicial system\bin\Debug\net8.0\run
 C:\Users\katar\RiderProjects\JudicialSystem\Judicial system\bin\Debug\net8.0\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.dll
 C:\Users\katar\RiderProjects\JudicialSystem\Judicial system\bin\Debug\net8.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
 C:\Users\katar\RiderProjects\JudicialSystem\Judicial system\bin\Debug\net8.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
-C:\Users\katar\RiderProjects\JudicialSystem\Judicial system\bin\Debug\net8.0\runtimes\win\lib\net7.0\Microsoft.Win32.SystemEvents.dll
-C:\Users\katar\RiderProjects\JudicialSystem\Judicial system\bin\Debug\net8.0\runtimes\win\lib\net7.0\System.Drawing.Common.dll
 C:\Users\katar\RiderProjects\JudicialSystem\Judicial system\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Runtime.Caching.dll
-C:\Users\katar\RiderProjects\JudicialSystem\Judicial system\bin\Debug\net8.0\runtimes\win\lib\net7.0\System.Security.Cryptography.ProtectedData.dll
-C:\Users\katar\RiderProjects\JudicialSystem\Judicial system\bin\Debug\net8.0\runtimes\win\lib\net7.0\System.Windows.Extensions.dll
 C:\Users\katar\RiderProjects\JudicialSystem\Judicial system\obj\Debug\net8.0\Judicial system.csproj.AssemblyReference.cache
 C:\Users\katar\RiderProjects\JudicialSystem\Judicial system\obj\Debug\net8.0\Judicial system.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\katar\RiderProjects\JudicialSystem\Judicial system\obj\Debug\net8.0\Judicial system.AssemblyInfoInputs.cache
@@ -1173,3 +1164,19 @@ C:\Users\katar\RiderProjects\JudicialSystem\Judicial system\obj\Debug\net8.0\ref
 C:\Users\katar\RiderProjects\JudicialSystem\Judicial system\obj\Debug\net8.0\Judicial system.pdb
 C:\Users\katar\RiderProjects\JudicialSystem\Judicial system\obj\Debug\net8.0\Judicial system.genruntimeconfig.cache
 C:\Users\katar\RiderProjects\JudicialSystem\Judicial system\obj\Debug\net8.0\ref\Judicial system.dll
+C:\Users\katar\RiderProjects\JudicialSystem\Judicial system\bin\Debug\net8.0\publish\publish\publish\web.config
+C:\Users\katar\RiderProjects\JudicialSystem\Judicial system\bin\Debug\net8.0\publish\publish\web.config
+C:\Users\katar\RiderProjects\JudicialSystem\Judicial system\bin\Debug\net8.0\publish\web.config
+C:\Users\katar\RiderProjects\JudicialSystem\Judicial system\bin\Debug\net8.0\publish\appsettings.Development.json
+C:\Users\katar\RiderProjects\JudicialSystem\Judicial system\bin\Debug\net8.0\publish\appsettings.json
+C:\Users\katar\RiderProjects\JudicialSystem\Judicial system\bin\Debug\net8.0\publish\Judicial system.deps.json
+C:\Users\katar\RiderProjects\JudicialSystem\Judicial system\bin\Debug\net8.0\publish\Judicial system.runtimeconfig.json
+C:\Users\katar\RiderProjects\JudicialSystem\Judicial system\bin\Debug\net8.0\publish\publish\appsettings.Development.json
+C:\Users\katar\RiderProjects\JudicialSystem\Judicial system\bin\Debug\net8.0\publish\publish\appsettings.json
+C:\Users\katar\RiderProjects\JudicialSystem\Judicial system\bin\Debug\net8.0\publish\publish\Judicial system.deps.json
+C:\Users\katar\RiderProjects\JudicialSystem\Judicial system\bin\Debug\net8.0\publish\publish\Judicial system.runtimeconfig.json
+C:\Users\katar\RiderProjects\JudicialSystem\Judicial system\bin\Debug\net8.0\publish\publish\publish\appsettings.Development.json
+C:\Users\katar\RiderProjects\JudicialSystem\Judicial system\bin\Debug\net8.0\publish\publish\publish\appsettings.json
+C:\Users\katar\RiderProjects\JudicialSystem\Judicial system\bin\Debug\net8.0\publish\publish\publish\Judicial system.deps.json
+C:\Users\katar\RiderProjects\JudicialSystem\Judicial system\bin\Debug\net8.0\publish\publish\publish\Judicial system.runtimeconfig.json
+C:\Users\katar\RiderProjects\JudicialSystem\Judicial system\bin\Debug\net8.0\System.Formats.Asn1.dll

@@ -29,4 +29,6 @@ public class Task
     public DateTime CreatedAt { get; set; }
     
     public string? FilePath { get; set; }
+    public byte[]? FileContent { get; set; }
+    public string? FileName { get; set; }
 }

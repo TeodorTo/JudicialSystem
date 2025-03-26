@@ -104,6 +104,7 @@ public class TaskController : Controller
 
     
     
+   
     [HttpPost]
     [Authorize(Roles = "Admin")]
     public async Task<IActionResult> UploadFile(int taskId, IFormFile file)
@@ -113,18 +114,21 @@ public class TaskController : Controller
 
         if (file != null && file.Length > 0)
         {
-            var uploadsFolder = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "wwwroot", "uploads");
-            Directory.CreateDirectory(uploadsFolder); 
-
-            var filePath = Path.Combine(uploadsFolder, file.FileName);
-            using (var stream = new FileStream(filePath, FileMode.Create))
+            using (var memoryStream = new MemoryStream())
             {
-                await file.CopyToAsync(stream);
+                await file.CopyToAsync(memoryStream);
+                task.FileContent = memoryStream.ToArray();
+                Console.WriteLine($"File uploaded: {file.FileName}, Size: {task.FileContent.Length} bytes");
             }
+            task.FileName = file.FileName; 
+            task.FilePath = null; 
 
-            task.FilePath = "/uploads/" + file.FileName;
             _context.Update(task);
             await _context.SaveChangesAsync();
+        }
+        else
+        {
+            Console.WriteLine("No file uploaded or file is empty.");
         }
 
         return RedirectToAction("Details", new { id = taskId });
@@ -134,13 +138,15 @@ public class TaskController : Controller
     public IActionResult DownloadFile(int taskId)
     {
         var task = _context.Tasks.Find(taskId);
-        if (task == null || string.IsNullOrEmpty(task.FilePath)) return NotFound();
+        if (task == null || task.FileContent == null || task.FileContent.Length == 0) 
+        {
+            Console.WriteLine($"Download failed: TaskId={taskId}, FileContent is null or empty.");
+            return NotFound();
+        }
 
-        var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", task.FilePath.TrimStart('/'));
-        if (!System.IO.File.Exists(filePath)) return NotFound();
-
+        Console.WriteLine($"Downloading file: {task.FileName}, Size: {task.FileContent.Length} bytes");
         var contentType = "application/octet-stream";
-        return PhysicalFile(filePath, contentType, Path.GetFileName(filePath));
+        return File(task.FileContent, contentType, task.FileName);
     }
 
 
