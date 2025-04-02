@@ -31,4 +31,8 @@ public class Task
     public string? FilePath { get; set; }
     public byte[]? FileContent { get; set; }
     public string? FileName { get; set; }
+    
+    public string? ShareableLink { get; set; }
+    
+    public DateTime? ExpirationDate { get; set; }
 }

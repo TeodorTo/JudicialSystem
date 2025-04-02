@@ -3,11 +3,11 @@ using Task = Judicial_system.Data.Task;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Text.Json;
 
 namespace Judicial_system.Controllers;
 
-
-[Authorize] 
+[Authorize]
 public class TaskController : Controller
 {
     private readonly ApplicationDbContext _context;
@@ -17,12 +17,10 @@ public class TaskController : Controller
         _context = context;
     }
 
-
     public async Task<IActionResult> Index()
     {
         return View(await _context.Tasks.ToListAsync());
     }
-
 
     public async Task<IActionResult> Details(int id)
     {
@@ -31,16 +29,14 @@ public class TaskController : Controller
         return View(task);
     }
 
-
     public IActionResult Create()
     {
         return View();
     }
 
-
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Create(Data.Task task)
+    public async Task<IActionResult> Create(Task task)
     {
         if (ModelState.IsValid)
         {
@@ -52,14 +48,12 @@ public class TaskController : Controller
         return View(task);
     }
 
-
     public async Task<IActionResult> Edit(int id)
     {
         var task = await _context.Tasks.FindAsync(id);
         if (task == null) return NotFound();
         return View(task);
     }
-
 
     [HttpPost]
     [ValidateAntiForgeryToken]
@@ -77,7 +71,6 @@ public class TaskController : Controller
         return View(task);
     }
 
-
     [HttpPost, ActionName("Delete")]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> DeleteConfirmed(int id)
@@ -85,13 +78,12 @@ public class TaskController : Controller
         var task = await _context.Tasks.FindAsync(id);
         if (task != null)
         {
-            // Изтриване на файла, ако съществува
             if (!string.IsNullOrEmpty(task.FilePath))
             {
                 var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", task.FilePath.TrimStart('/'));
                 if (System.IO.File.Exists(filePath))
                 {
-                    System.IO.File.Delete(filePath); 
+                    System.IO.File.Delete(filePath);
                 }
             }
 
@@ -102,9 +94,6 @@ public class TaskController : Controller
         return RedirectToAction(nameof(Index));
     }
 
-    
-    
-   
     [HttpPost]
     [Authorize(Roles = "Admin")]
     public async Task<IActionResult> UploadFile(int taskId, IFormFile file)
@@ -118,17 +107,12 @@ public class TaskController : Controller
             {
                 await file.CopyToAsync(memoryStream);
                 task.FileContent = memoryStream.ToArray();
-                Console.WriteLine($"File uploaded: {file.FileName}, Size: {task.FileContent.Length} bytes");
             }
-            task.FileName = file.FileName; 
-            task.FilePath = null; 
+            task.FileName = file.FileName;
+            task.FilePath = null;
 
             _context.Update(task);
             await _context.SaveChangesAsync();
-        }
-        else
-        {
-            Console.WriteLine("No file uploaded or file is empty.");
         }
 
         return RedirectToAction("Details", new { id = taskId });
@@ -138,18 +122,75 @@ public class TaskController : Controller
     public IActionResult DownloadFile(int taskId)
     {
         var task = _context.Tasks.Find(taskId);
-        if (task == null || task.FileContent == null || task.FileContent.Length == 0) 
+        if (task == null || task.FileContent == null || task.FileContent.Length == 0)
         {
-            Console.WriteLine($"Download failed: TaskId={taskId}, FileContent is null or empty.");
             return NotFound();
         }
 
-        Console.WriteLine($"Downloading file: {task.FileName}, Size: {task.FileContent.Length} bytes");
-        var contentType = "application/octet-stream";
-        return File(task.FileContent, contentType, task.FileName);
+        return File(task.FileContent, "application/octet-stream", task.FileName);
     }
 
+    [HttpPost]
+    [Authorize(Roles = "Admin")]
+    public async Task<IActionResult> GenerateLink([FromBody] JsonElement body)
+    {
+        Console.WriteLine("▶ Получена заявка към /Task/GenerateLink");
 
+        if (!body.TryGetProperty("taskId", out var taskIdProperty))
+        {
+            Console.WriteLine("❌ ГРЕШКА: Липсва 'taskId' в заявката!");
+            return BadRequest(new { message = "Грешен формат на заявката." });
+        }
+
+        int taskId = taskIdProperty.GetInt32();
+        Console.WriteLine($"✔ Получен taskId: {taskId}");
+
+        var task = await _context.Tasks.FindAsync(taskId);
+        if (task == null)
+        {
+            Console.WriteLine("❌ ГРЕШКА: Няма такъв Task в базата!");
+            return NotFound(new { message = "Задачата не е намерена." });
+        }
+
+        if (task.FileContent == null)
+        {
+            Console.WriteLine("❌ ГРЕШКА: Task съществува, но няма прикачен файл!");
+            return NotFound(new { message = "Файлът не съществува или не е качен." });
+        }
+
+        task.ShareableLink = Guid.NewGuid().ToString();
+        task.ExpirationDate = DateTime.UtcNow.AddDays(1);
+        await _context.SaveChangesAsync();
+
+        var fullUrl = $"{Request.Scheme}://{Request.Host}/Task/DownloadShared/{task.ShareableLink}";
+        Console.WriteLine($"✅ Генериран линк: {fullUrl}");
+
+        return Json(new { ShareableUrl = fullUrl });
+    }
     
-}
 
+
+    [HttpGet("Task/DownloadShared/{shareableLink}")]
+    [AllowAnonymous]
+    public async Task<IActionResult> DownloadShared(string shareableLink)
+    {
+        Console.WriteLine($"▶ Заявка за DownloadShared с линк: {shareableLink}");
+        var task = await _context.Tasks
+            .FirstOrDefaultAsync(t => t.ShareableLink == shareableLink && t.ExpirationDate > DateTime.UtcNow);
+
+        if (task == null)
+        {
+            Console.WriteLine("❌ Задача не е намерена или линкът е изтекъл.");
+            return NotFound("Файлът не съществува или линкът е изтекъл.");
+        }
+
+        if (task.FileContent == null)
+        {
+            Console.WriteLine("❌ Файлът липсва в задачата.");
+            return NotFound("Файлът не съществува или линкът е изтекъл.");
+        }
+
+        Console.WriteLine("✅ Файлът се изпраща успешно.");
+        return File(task.FileContent, "application/octet-stream", task.FileName);
+    }
+}

@@ -8,7 +8,7 @@
     <div class="card-header bg-info text-white">
         <h1 class="h4 mb-0">@Model.Title</h1>
     </div>
-    <div class="ifera card-body">
+    <div class="card-body">
         <dl class="row">
             <dt class="col-sm-3">Description:</dt>
             <dd class="col-sm-9">@Model.Description</dd>
@@ -33,6 +33,9 @@
                     <button type="submit" class="btn btn-success">Upload</button>
                 </div>
             </form>
+
+            <button id="generateLinkBtn" class="btn btn-primary">Генерирай линк</button>
+            <input type="text" id="generatedLink" class="form-control mt-2" readonly style="display: none;" />
         }
 
         @if (Model.FileContent != null && Model.FileContent.Length > 0)
@@ -40,23 +43,40 @@
             <h3>Attached File:</h3>
             <a href="@Url.Action("DownloadFile", "Task", new { taskId = Model.Id })" class="btn btn-primary mb-4">Download File</a>
         }
-
-        <h3>Submit Solution:</h3>
-        <form asp-action="Create" asp-controller="Submission" method="post">
-            <input type="hidden" name="TaskId" value="@Model.Id" />
-            <div class="mb-3">
-                <label for="SourceCode" class="form-label fw-bold">Your Code:</label>
-                <textarea id="SourceCode" name="SourceCode" class="form-control" rows="8" required></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
-
-        <div class="mt-4 d-flex gap-2">
-            @if (isAdmin)
-            {
-                <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">Edit</a>
-            }
-            <a asp-action="Index" class="btn btn-secondary">Back to List</a>
-        </div>
     </div>
 </div>
+
+<script>
+    document.getElementById("generateLinkBtn").addEventListener("click", function() {
+        var taskId = @Model.Id;
+        console.log("Task ID:", taskId);
+
+        fetch("/Task/GenerateLink", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ taskId: taskId })
+        })
+            .then(response => {
+                console.log("Статус на отговора:", response.status);
+                if (!response.ok) {
+                    throw new Error("Сървърът върна грешка: " + response.status);
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log("Отговор от сървъра (пълен):", JSON.stringify(data));
+                console.log("shareableUrl:", data.shareableUrl);
+                if (data.shareableUrl) {
+                    var linkField = document.getElementById("generatedLink");
+                    linkField.value = data.shareableUrl;
+                    linkField.style.display = "block";
+                } else {
+                    alert("Грешка при генериране на линка! Няма върнат shareableUrl.");
+                }
+            })
+            .catch(error => {
+                console.error("Error:", error);
+                alert("Грешка при генериране на линка! Виж конзолата за повече информация.");
+            });
+    });
+</script>
