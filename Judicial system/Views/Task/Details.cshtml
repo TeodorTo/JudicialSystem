@@ -26,15 +26,11 @@
         @if (isAdmin)
         {
             <h3 class="mt-4">Upload File:</h3>
-            <form id="uploadForm" class="mb-4">
+            <form asp-action="UploadFile" asp-controller="Task" method="post" enctype="multipart/form-data" class="mb-4">
                 <input type="hidden" name="taskId" value="@Model.Id" />
                 <div class="input-group">
-                    <input type="file" id="fileInput" name="file" class="form-control" required />
+                    <input type="file" name="file" class="form-control" required />
                     <button type="submit" class="btn btn-success">Upload</button>
-                </div>
-                <div class="mt-2">
-                    <progress id="progressBar" value="0" max="100" style="width: 100%;"></progress>
-                    <span id="progressText">0%</span>
                 </div>
             </form>
 
@@ -50,100 +46,37 @@
     </div>
 </div>
 
-@section Scripts {
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            $("#uploadForm").submit(function (e) {
-                e.preventDefault();
+<script>
+    document.getElementById("generateLinkBtn").addEventListener("click", function() {
+        var taskId = @Model.Id;
+        console.log("Task ID:", taskId);
 
-                var fileInput = $("#fileInput")[0];
-                if (fileInput.files.length === 0) {
-                    alert("Моля, избери файл!");
-                    return;
+        fetch("/Task/GenerateLink", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ taskId: taskId })
+        })
+            .then(response => {
+                console.log("Статус на отговора:", response.status);
+                if (!response.ok) {
+                    throw new Error("Сървърът върна грешка: " + response.status);
                 }
-
-                var file = fileInput.files[0];
-                var chunkSize = 1024 * 1024; // 1MB части
-                var totalChunks = Math.ceil(file.size / chunkSize);
-                var chunkIndex = 0;
-                var start = 0;
-                var taskId = @Model.Id;
-
-                function uploadChunk() {
-                    var end = Math.min(start + chunkSize, file.size);
-                    var chunk = file.slice(start, end);
-                    var formData = new FormData();
-                    formData.append("file", chunk);
-                    formData.append("taskId", taskId);
-                    formData.append("chunkIndex", chunkIndex);
-                    formData.append("totalChunks", totalChunks);
-                    formData.append("fileName", file.name);
-
-                    $.ajax({
-                        url: "/Task/UploadChunk",
-                        type: "POST",
-                        data: formData,
-                        processData: false,
-                        contentType: false,
-                        xhr: function () {
-                            var xhr = new XMLHttpRequest();
-                            xhr.upload.addEventListener("progress", function (event) {
-                                if (event.lengthComputable) {
-                                    var percent = Math.round(((chunkIndex * chunkSize + event.loaded) / file.size) * 100);
-                                    $("#progressBar").val(percent);
-                                    $("#progressText").text(percent + "%");
-                                }
-                            }, false);
-                            return xhr;
-                        },
-                        success: function (response) {
-                            if (response.success) {
-                                chunkIndex++;
-                                start += chunkSize;
-                                if (chunkIndex < totalChunks) {
-                                    uploadChunk(); // Качваме следващата част
-                                } else {
-                                    alert(response.message);
-                                }
-                            } else {
-                                alert(response.message);
-                            }
-                        },
-                        error: function () {
-                            alert("Грешка при качването.");
-                        }
-                    });
+                return response.json();
+            })
+            .then(data => {
+                console.log("Отговор от сървъра (пълен):", JSON.stringify(data));
+                console.log("shareableUrl:", data.shareableUrl);
+                if (data.shareableUrl) {
+                    var linkField = document.getElementById("generatedLink");
+                    linkField.value = data.shareableUrl;
+                    linkField.style.display = "block";
+                } else {
+                    alert("Грешка при генериране на линка! Няма върнат shareableUrl.");
                 }
-
-                // Стартираме качването
-                uploadChunk();
+            })
+            .catch(error => {
+                console.error("Error:", error);
+                alert("Грешка при генериране на линка! Виж конзолата за повече информация.");
             });
-
-            // Генериране на линк (оставям го непроменено)
-            $("#generateLinkBtn").click(function() {
-                var taskId = @Model.Id;
-                fetch("/Task/GenerateLink", {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ taskId: taskId })
-                })
-                    .then(response => {
-                        if (!response.ok) throw new Error("Сървърът върна грешка: " + response.status);
-                        return response.json();
-                    })
-                    .then(data => {
-                        if (data.shareableUrl) {
-                            $("#generatedLink").val(data.shareableUrl).show();
-                        } else {
-                            alert("Грешка при генериране на линка!");
-                        }
-                    })
-                    .catch(error => {
-                        console.error("Error:", error);
-                        alert("Грешка при генериране на линка!");
-                    });
-            });
-        });
-    </script>
-}
+    });
+</script>

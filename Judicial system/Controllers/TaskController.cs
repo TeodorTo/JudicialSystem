@@ -92,70 +92,31 @@ public class TaskController : Controller
         }
 
         return RedirectToAction(nameof(Index));
-    } 
-    
+    }
+
     [HttpPost]
-[Authorize(Roles = "Admin")]
-[RequestSizeLimit(long.MaxValue)]
-public async Task<IActionResult> UploadChunk(int taskId, IFormFile file, int chunkIndex, int totalChunks, string fileName)
-{
-    var task = await _context.Tasks.FindAsync(taskId);
-    if (task == null) return NotFound();
-
-    if (file != null && file.Length > 0)
+    [Authorize(Roles = "Admin")]
+    public async Task<IActionResult> UploadFile(int taskId, IFormFile file)
     {
-        // Извън wwwroot
-        string tempPath = Path.Combine("/tmp", "upload_chunks", taskId.ToString());
-        string finalPath = Path.Combine("/var/files", taskId.ToString()); // <- Тук ще е крайният файл
+        var task = await _context.Tasks.FindAsync(taskId);
+        if (task == null) return NotFound();
 
-        Directory.CreateDirectory(tempPath);
-        Directory.CreateDirectory(finalPath);
-
-        string chunkFilePath = Path.Combine(tempPath, $"{fileName}.part{chunkIndex}");
-
-        using (var stream = new FileStream(chunkFilePath, FileMode.Create))
+        if (file != null && file.Length > 0)
         {
-            await file.CopyToAsync(stream);
-        }
-
-        // Ако е последният chunk
-        if (chunkIndex == totalChunks - 1)
-        {
-            string assembledFilePath = Path.Combine(finalPath, fileName);
-
-            using (var finalStream = new FileStream(assembledFilePath, FileMode.Create))
+            using (var memoryStream = new MemoryStream())
             {
-                for (int i = 0; i < totalChunks; i++)
-                {
-                    string partPath = Path.Combine(tempPath, $"{fileName}.part{i}");
-                    using (var partStream = new FileStream(partPath, FileMode.Open))
-                    {
-                        await partStream.CopyToAsync(finalStream);
-                    }
-                    System.IO.File.Delete(partPath);
-                }
+                await file.CopyToAsync(memoryStream);
+                task.FileContent = memoryStream.ToArray();
             }
-
-            // Cleanup временното
-            Directory.Delete(tempPath, true);
-
-            // Записваме пътя в базата
-            task.FileName = fileName;
-            task.FilePath = assembledFilePath;
-            task.FileContent = null; // Не го пазим в DB
+            task.FileName = file.FileName;
+            task.FilePath = null;
 
             _context.Update(task);
             await _context.SaveChangesAsync();
-
-            return Json(new { success = true, message = "Файлът е сглобен успешно!" });
         }
 
-        return Json(new { success = true, message = $"Chunk {chunkIndex + 1}/{totalChunks} приет." });
+        return RedirectToAction("Details", new { id = taskId });
     }
-
-    return Json(new { success = false, message = "Няма файл." });
-}
-
 
     [HttpGet]
     public IActionResult DownloadFile(int taskId)
