@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Judicial system")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+cf9bac754302da4d57e50bdcd1fd554783835ee4")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+07b4240163debd6d6cbd848d62ed1cfc21fe574b")]
 [assembly: System.Reflection.AssemblyProductAttribute("Judicial system")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Judicial system")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
