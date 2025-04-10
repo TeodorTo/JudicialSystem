@@ -8126,11 +8126,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Jupiter Soft HP\\RiderProjects\\JudicialSystem\\Judicial system\\Judicial system.csproj",
+      "projectUniqueName": "C:\\Users\\Jupiter Soft HP\\Desktop\\JS\\JudicialSystem\\Judicial system\\Judicial system.csproj",
       "projectName": "Judicial system",
-      "projectPath": "C:\\Users\\Jupiter Soft HP\\RiderProjects\\JudicialSystem\\Judicial system\\Judicial system.csproj",
+      "projectPath": "C:\\Users\\Jupiter Soft HP\\Desktop\\JS\\JudicialSystem\\Judicial system\\Judicial system.csproj",
       "packagesPath": "C:\\Users\\Jupiter Soft HP\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Jupiter Soft HP\\RiderProjects\\JudicialSystem\\Judicial system\\obj\\",
+      "outputPath": "C:\\Users\\Jupiter Soft HP\\Desktop\\JS\\JudicialSystem\\Judicial system\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

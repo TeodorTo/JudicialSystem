@@ -1,4 +1,5 @@
 using Judicial_system.Data;
+using Judicial_system.Middleware;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Task = System.Threading.Tasks.Task;
@@ -18,7 +19,7 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
     .AddEntityFrameworkStores<ApplicationDbContext>();
 
 builder.Services.AddControllersWithViews();
-
+Judicial_system.AppState.MaintenanceMode = builder.Configuration.GetValue<bool>("MaintenanceMode");
 // Add session services
 builder.Services.AddSession(options =>
 {
@@ -48,6 +49,8 @@ app.UseSession();
 app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
+
+app.UseMaintenanceMode();
 
 app.MapControllerRoute(
     name: "default",

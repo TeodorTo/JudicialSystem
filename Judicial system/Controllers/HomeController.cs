@@ -1,48 +1,54 @@
 ﻿using System.Diagnostics;
+using Microsoft.AspNetCore.Authorization; // Добавете това
 using Microsoft.AspNetCore.Mvc;
 using Judicial_system.Models;
 
-namespace Judicial_system.Controllers;
-
-public class HomeController : Controller
+namespace Judicial_system.Controllers
 {
-    private readonly ILogger<HomeController> _logger;
-
-    public HomeController(ILogger<HomeController> logger)
+    public class HomeController : Controller
     {
-        _logger = logger;
-    }
+        private readonly ILogger<HomeController> _logger;
 
-    public IActionResult Index()
-    {
-        return View();
-    }
-
-    [HttpPost]
-    public IActionResult SetLanguage(string language)
-    {
-        if (!string.IsNullOrEmpty(language))
+        public HomeController(ILogger<HomeController> logger)
         {
-            // Store the selected language in session
-            HttpContext.Session.SetString("PreferredLanguage", language);
+            _logger = logger;
+        }
 
-            // Redirect to Task page if C# is selected, otherwise back to home for now
-            if (language.ToLower() == "csharp")
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        public IActionResult Index()
+        {
+            ViewBag.MaintenanceMode = AppState.MaintenanceMode; // Предаваме статуса на изгледа
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult SetLanguage(string language)
+        {
+            if (!string.IsNullOrEmpty(language))
             {
-                return RedirectToAction("Index", "Task");
-
+                HttpContext.Session.SetString("PreferredLanguage", language);
+                if (language.ToLower() == "csharp")
+                {
+                    return RedirectToAction("Index", "Task");
+                }
+                return RedirectToAction("Index");
             }
-            // For other languages, return to home page (to be implemented later)
             return RedirectToAction("Index");
         }
-        return RedirectToAction("Index");
-    }
 
-    
+        [Authorize(Roles = "Admin")]
+        [HttpPost]
+        public IActionResult ToggleMaintenanceMode()
+        {
+            AppState.MaintenanceMode = !AppState.MaintenanceMode;
+            _logger.LogInformation($"MaintenanceMode toggled to: {AppState.MaintenanceMode}");
+            return RedirectToAction("Index");
+        }
 
-    [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-    public IActionResult Error()
-    {
-        return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        public IActionResult Error()
+        {
+            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
     }
 }

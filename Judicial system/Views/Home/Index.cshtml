@@ -73,6 +73,26 @@
             </div>
         </div>
     </div>
+
+    <!-- Добавяме секция за администратори -->
+    @if (User.IsInRole("Admin"))
+    {
+        <div class="row mt-5 justify-content-center">
+            <div class="col-lg-6">
+                <div class="card shadow-lg">
+                    <div class="card-body p-4 text-center">
+                        <h2 class="h4 mb-4">Maintenance Mode</h2>
+                        <p>Status: @(ViewBag.MaintenanceMode ? "Включен" : "Изключен")</p>
+                        <form method="post" asp-action="ToggleMaintenanceMode">
+                            <button type="submit" class="btn btn-warning w-100">
+                                @(ViewBag.MaintenanceMode ? "Изключи Maintenance Mode" : "Включи Maintenance Mode")
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
 </div>
 
 @section Scripts {
