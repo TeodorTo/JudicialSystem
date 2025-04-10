@@ -13,14 +13,15 @@ public class MaintenanceMiddleware
 
     public async Task InvokeAsync(HttpContext context)
     {
-        var path = context.Request.Path.Value;
+        var path = context.Request.Path.Value?.ToLowerInvariant();
 
         Console.WriteLine($"MaintenanceMode: {AppState.MaintenanceMode}, IsAdmin: {context.User.IsInRole("Admin")}, Path: {path}");
 
-        // Разреши достъп до至于: Тук добавям малко повече логика за логин страницата
-        bool isLoginPath = path.StartsWith("/Identity/Account/Login", StringComparison.OrdinalIgnoreCase);
+        // Разреши достъп до страницата за логин и maintenance страницата
+        bool isLoginPath = path.StartsWith("/identity/account/login", StringComparison.OrdinalIgnoreCase);
+        bool isMaintenancePath = path.Equals("/home/maintenance", StringComparison.OrdinalIgnoreCase);
 
-        if (AppState.MaintenanceMode && !context.User.IsInRole("Admin") && !isLoginPath)
+        if (AppState.MaintenanceMode && !context.User.IsInRole("Admin") && !isLoginPath && !isMaintenancePath)
         {
             context.Response.Redirect("/Home/Maintenance");
             return;
