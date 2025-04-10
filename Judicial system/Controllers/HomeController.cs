@@ -44,11 +44,19 @@ namespace Judicial_system.Controllers
             _logger.LogInformation($"MaintenanceMode toggled to: {AppState.MaintenanceMode}");
             return RedirectToAction("Index");
         }
+        
+        [AllowAnonymous] // Позволява достъп на не-логнати потребители
+        public IActionResult Maintenance()
+        {
+            return View();
+        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+        
+        
     }
 }

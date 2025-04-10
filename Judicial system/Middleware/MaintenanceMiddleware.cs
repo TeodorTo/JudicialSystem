@@ -17,22 +17,17 @@ public class MaintenanceMiddleware
 
         Console.WriteLine($"MaintenanceMode: {AppState.MaintenanceMode}, IsAdmin: {context.User.IsInRole("Admin")}, Path: {path}");
 
-        // Разреши достъп до страницата за логин по време на поддръжка
+        // Разреши достъп до至于: Тук добавям малко повече логика за логин страницата
         bool isLoginPath = path.StartsWith("/Identity/Account/Login", StringComparison.OrdinalIgnoreCase);
 
         if (AppState.MaintenanceMode && !context.User.IsInRole("Admin") && !isLoginPath)
         {
-            context.Response.StatusCode = StatusCodes.Status503ServiceUnavailable;
-            context.Response.ContentType = "text/html; charset=utf-8";
-
-            var maintenanceHtml = await System.IO.File.ReadAllTextAsync("Views/Home/Maintenance.cshtml");
-            await context.Response.WriteAsync(maintenanceHtml);
+            context.Response.Redirect("/Home/Maintenance");
             return;
         }
 
         await _next(context);
     }
-
 }
 
 public static class MaintenanceMiddlewareExtensions
