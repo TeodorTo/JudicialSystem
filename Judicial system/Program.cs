@@ -1,10 +1,13 @@
 using Judicial_system.Data;
 using Judicial_system.Middleware;
+using Judicial_system.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Task = System.Threading.Tasks.Task;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddTransient<IEmailSender, EmailSender>();
+
 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") 
     ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
@@ -17,6 +20,13 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>();
+
+
+
+builder.Services.AddLogging(logging =>
+{
+    logging.AddConsole();
+});
 
 builder.Services.AddControllersWithViews();
 Judicial_system.AppState.MaintenanceMode = builder.Configuration.GetValue<bool>("MaintenanceMode");

@@ -1,0 +1,25 @@
+﻿@model Judicial_system.Models.EmailTestViewModel
+
+@{
+    ViewData["Title"] = "Тест на EmailSender";
+}
+
+<h2>Тестово изпращане на имейл</h2>
+
+<form asp-action="Index" method="post" class="form-group">
+    <label asp-for="Receiver">До:</label>
+    <input asp-for="Receiver" class="form-control" />
+
+    <label asp-for="Subject">Тема:</label>
+    <input asp-for="Subject" class="form-control" />
+
+    <label asp-for="Message">Съобщение:</label>
+    <textarea asp-for="Message" class="form-control" rows="5"></textarea>
+
+    <button type="submit" class="btn btn-primary mt-3">Изпрати</button>
+</form>
+
+@if (!string.IsNullOrEmpty(Model.StatusMessage))
+{
+    <div class="alert alert-info mt-3">@Model.StatusMessage</div>
+}

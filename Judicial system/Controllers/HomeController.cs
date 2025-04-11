@@ -1,23 +1,34 @@
 ﻿using System.Diagnostics;
+using Judicial_system.Data;
 using Microsoft.AspNetCore.Authorization; // Добавете това
 using Microsoft.AspNetCore.Mvc;
 using Judicial_system.Models;
+using Microsoft.AspNetCore.Identity.UI.Services;
 
 namespace Judicial_system.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        private readonly IEmailSender _emailSender;
+        public HomeController(ILogger<HomeController> logger, IEmailSender emailSender)
         {
             _logger = logger;
+            _emailSender = emailSender;
         }
-
+        
+        
+        
+        
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
             ViewBag.MaintenanceMode = AppState.MaintenanceMode; // Предаваме статуса на изгледа
+
+            var receiver = "theodore130802@gmail.com";
+            var subject = "test";
+            var message = "Hello World!";
+            await _emailSender.SendEmailAsync(receiver, subject, message);
             return View();
         }
 
