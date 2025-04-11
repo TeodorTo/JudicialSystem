@@ -14,43 +14,50 @@ public class EmailBackgroundService : BackgroundService
     {
         _emailSender = emailSender;
         _logger = logger;
+        _logger.LogInformation("EmailBackgroundService initialized.");
     }
 
-    // Метод за добавяне на имейл в опашката
     public void QueueEmail(string email, string subject, string message)
     {
-        _emailQueue.Enqueue((email, subject, message, 0)); // Първоначално retryCount е 0
-        _logger.LogInformation("Имейл добавен в опашката за изпращане до {Email}", email);
+        _emailQueue.Enqueue((email, subject, message, 0));
+        _logger.LogInformation("Email queued for sending to {Email}. Subject: {Subject}. Queue count: {QueueCount}", email, subject, _emailQueue.Count);
     }
 
-    // Метод, който се изпълнява на заден план и обработва опашката
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
+        _logger.LogInformation("EmailBackgroundService started. Entering main loop.");
         while (!stoppingToken.IsCancellationRequested)
         {
+            _logger.LogDebug("Checking queue for emails. Queue count: {QueueCount}", _emailQueue.Count);
             if (_emailQueue.TryDequeue(out var emailData))
             {
+                _logger.LogInformation("Dequeued email for {Email}. Attempt {RetryCount}/3", emailData.email, emailData.retryCount + 1);
                 try
                 {
+                    _logger.LogInformation("Attempting to send email to {Email}...", emailData.email);
                     await _emailSender.SendEmailAsync(emailData.email, emailData.subject, emailData.message);
-                    _logger.LogInformation("Имейлът е изпратен успешно до {Email}", emailData.email);
+                    _logger.LogInformation("Email sent successfully to {Email}", emailData.email);
                 }
                 catch (Exception ex)
                 {
-                    _logger.LogError(ex, "Грешка при изпращане на имейл до {Email}", emailData.email);
-                    if (emailData.retryCount < 3) // Максимум 3 опита
+                    _logger.LogError(ex, "Failed to send email to {Email}. Error: {ErrorMessage}", emailData.email, ex.Message);
+                    if (emailData.retryCount < 3)
                     {
                         _emailQueue.Enqueue((emailData.email, emailData.subject, emailData.message, emailData.retryCount + 1));
-                        _logger.LogInformation("Имейлът е добавен за повторен опит ({RetryCount}/3) за {Email}", emailData.retryCount + 1, emailData.email);
+                        _logger.LogInformation("Email re-queued for retry ({RetryCount}/3) for {Email}", emailData.retryCount + 1, emailData.email);
                     }
                     else
                     {
-                        _logger.LogWarning("Имейлът не можа да бъде изпратен след 3 опита до {Email}", emailData.email);
-                        // Тук можеш да добавиш допълнителна логика, напр. да запишеш неуспешния имейл в база данни
+                        _logger.LogWarning("Email failed to send after 3 attempts to {Email}", emailData.email);
                     }
                 }
             }
-            await Task.Delay(1000, stoppingToken); // Чака 1 секунда преди да провери за следващ имейл
+            else
+            {
+                _logger.LogDebug("No emails in queue. Waiting...");
+            }
+            await Task.Delay(1000, stoppingToken);
         }
+        _logger.LogInformation("EmailBackgroundService stopped.");
     }
 }
