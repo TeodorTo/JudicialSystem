@@ -33,17 +33,12 @@ public class EmailSender : IEmailSender
         };
 
         using var smtp = new SmtpClient();
-        try
-        {
+        
             await smtp.ConnectAsync(_SmtpServer, _Port, SecureSocketOptions.StartTls);
             await smtp.AuthenticateAsync(_SenderEmail, _SenderPassword); // App password
             await smtp.SendAsync(emailMessage);
             await smtp.DisconnectAsync(true);
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine("Error sending email: " + ex.Message);
-            throw;
-        }
+        
+
     }
 }

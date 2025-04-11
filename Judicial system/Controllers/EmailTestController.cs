@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace Judicial_system.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class EmailTestController : Controller
     {
         private readonly IEmailSender _emailSender;
@@ -18,14 +19,14 @@ namespace Judicial_system.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles = "Admin")]
+
         public IActionResult Index()
         {
             return View(new EmailTestViewModel());
         }
 
         [HttpPost]
-        [Authorize(Roles = "Admin")]
+
         public async Task<IActionResult> Index(EmailTestViewModel model)
         {
             try
