@@ -12,7 +12,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Configure EmailSender
 builder.Services.AddTransient<IEmailSender, EmailSender>();
-
+builder.Services.AddHostedService<EmailBackgroundService>();
 // Get connection string from environment or fallback to appsettings
 var envConnectionString = Environment.GetEnvironmentVariable("DB_SERVER") != null
     ? $"Server={Environment.GetEnvironmentVariable("DB_SERVER")};" +
