@@ -3,34 +3,59 @@ using Judicial_system.Middleware;
 using Judicial_system.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
+using System.Collections;
 using Task = System.Threading.Tasks.Task;
 
+// Create builder
 var builder = WebApplication.CreateBuilder(args);
+
+// Configure EmailSender
 builder.Services.AddTransient<IEmailSender, EmailSender>();
 
+// Get connection string from environment or fallback to appsettings
+var envConnectionString = Environment.GetEnvironmentVariable("DB_SERVER") != null
+    ? $"Server={Environment.GetEnvironmentVariable("DB_SERVER")};" +
+      $"Database={Environment.GetEnvironmentVariable("DB_NAME")};" +
+      $"User Id={Environment.GetEnvironmentVariable("DB_USER")};" +
+      $"Password={Environment.GetEnvironmentVariable("DB_PASSWORD")};" +
+      $"TrustServerCertificate=True;"
+    : builder.Configuration.GetConnectionString("DefaultConnection") 
+      ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
 
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") 
-    ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
-
+// Register DbContext
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlServer(connectionString));
+    options.UseSqlServer(envConnectionString));
 
+// Add Identity
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>();
 
-
-
+// Logging
 builder.Services.AddLogging(logging =>
 {
     logging.AddConsole();
 });
 
+// Load EmailSettings from environment variables
+builder.Services.Configure<EmailSettings>(options =>
+{
+    options.SmtpServer = Environment.GetEnvironmentVariable("SMTP_SERVER") ?? "";
+    options.Port = int.TryParse(Environment.GetEnvironmentVariable("SMTP_PORT"), out var port) ? port : 587;
+    options.SenderEmail = Environment.GetEnvironmentVariable("SENDER_EMAIL") ?? "";
+    options.SenderPassword = Environment.GetEnvironmentVariable("SENDER_PASSWORD") ?? "";
+});
+
+// MVC
 builder.Services.AddControllersWithViews();
+
+// Maintenance mode flag
 Judicial_system.AppState.MaintenanceMode = builder.Configuration.GetValue<bool>("MaintenanceMode");
-// Add session services
+
+// Sessions
 builder.Services.AddSession(options =>
 {
     options.IdleTimeout = TimeSpan.FromMinutes(30);
@@ -40,6 +65,7 @@ builder.Services.AddSession(options =>
 
 var app = builder.Build();
 
+// Dev / Prod behavior
 if (app.Environment.IsDevelopment())
 {
     app.UseMigrationsEndPoint();
@@ -62,12 +88,14 @@ app.UseAuthorization();
 
 app.UseMaintenanceMode();
 
+// Map routes
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.MapRazorPages();
 
+// Role init
 using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
@@ -76,6 +104,7 @@ using (var scope = app.Services.CreateScope())
 
 app.Run();
 
+// Create initial roles and admin user
 static async Task InitializeRoles(IServiceProvider serviceProvider)
 {
     var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
