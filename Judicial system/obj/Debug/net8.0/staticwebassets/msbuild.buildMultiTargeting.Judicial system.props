@@ -1,3 +1,3 @@
 ﻿<Project>
-  <Import Project="..\build\Judicial system.props" />
+  <Import Project="../build/Judicial system.props" />
 </Project>

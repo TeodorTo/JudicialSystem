@@ -32,10 +32,11 @@ public class EmailSender : IEmailSender
         emailMessage.From.Add(new MailboxAddress("Judicial System", _SenderEmail));
         emailMessage.To.Add(MailboxAddress.Parse(email));
         emailMessage.Subject = subject;
-        emailMessage.Body = new TextPart("plain")
+        emailMessage.Body = new TextPart("html")
         {
             Text = message
         };
+
 
         using var smtp = new SmtpClient();
         _logger.LogInformation("Connecting to SMTP server {SmtpServer}:{Port}...", _SmtpServer, _Port);
