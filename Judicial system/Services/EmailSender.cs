@@ -16,7 +16,7 @@ public class EmailSender : IEmailSender
     public EmailSender(IConfiguration configuration, ILogger<EmailSender> logger)
     {
         var emailSetting = configuration.GetSection("EmailSettings");
-        _SmtpServer = emailSetting["SmtpServer"];
+        _SmtpServer = "smtp.gmail.com";
         _Port = 587;
         _SenderEmail = emailSetting["SenderEmail"];
         _SenderPassword = emailSetting["SenderPassword"];
