@@ -17,7 +17,7 @@ public class EmailSender : IEmailSender
     {
         var emailSetting = configuration.GetSection("EmailSettings");
         _SmtpServer = emailSetting["SmtpServer"];
-        _Port = int.Parse(emailSetting["Port"]);
+        _Port = 587;
         _SenderEmail = emailSetting["SenderEmail"];
         _SenderPassword = emailSetting["SenderPassword"];
         _logger = logger;
