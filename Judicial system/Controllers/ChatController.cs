@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Judicial_system.Controllers;
 
-[Authorize(Roles = "Admin")]
+[Authorize]
 public class ChatController : Controller
 {
     public IActionResult Chat()
