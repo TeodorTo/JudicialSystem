@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using System.Collections;
+using Judicial_system.Hubs;
+using Judicial_system.Models;
 using Task = System.Threading.Tasks.Task;
 
 // Create builder
@@ -13,8 +15,9 @@ var builder = WebApplication.CreateBuilder(args);
 // Configure EmailSender
 builder.Services.AddTransient<IEmailSender, EmailSender>();
 builder.Services.AddSingleton<EmailBackgroundService>(); // Добавяме като Singleton
+builder.Services.AddSignalR();
 builder.Services.AddHostedService(provider => provider.GetRequiredService<EmailBackgroundService>());
-// Get connection string from environment or fallback to appsettings
+
 var envConnectionString = Environment.GetEnvironmentVariable("DB_SERVER") != null
     ? $"Server={Environment.GetEnvironmentVariable("DB_SERVER")};" +
       $"Database={Environment.GetEnvironmentVariable("DB_NAME")};" +
@@ -93,6 +96,8 @@ app.UseMaintenanceMode();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+app.MapHub<ChatHub>("/chatHub");
 
 app.MapRazorPages();
 

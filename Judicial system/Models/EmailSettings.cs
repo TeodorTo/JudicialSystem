@@ -1,4 +1,4 @@
-﻿namespace Judicial_system.Services
+﻿namespace Judicial_system.Models
 {
     public class EmailSettings
     {

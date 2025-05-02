@@ -8260,24 +8260,31 @@
     ]
   },
   "packageFolders": {
-    "/home/winchester533/.nuget/packages/": {}
+    "C:\\Users\\Jupiter Soft HP\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/winchester533/RiderProjects/JudicialSystem/Judicial system/Judicial system.csproj",
+      "projectUniqueName": "C:\\Users\\Jupiter Soft HP\\Desktop\\New folder (4)\\JudicialSystem\\Judicial system\\Judicial system.csproj",
       "projectName": "Judicial system",
-      "projectPath": "/home/winchester533/RiderProjects/JudicialSystem/Judicial system/Judicial system.csproj",
-      "packagesPath": "/home/winchester533/.nuget/packages/",
-      "outputPath": "/home/winchester533/RiderProjects/JudicialSystem/Judicial system/obj/",
+      "projectPath": "C:\\Users\\Jupiter Soft HP\\Desktop\\New folder (4)\\JudicialSystem\\Judicial system\\Judicial system.csproj",
+      "packagesPath": "C:\\Users\\Jupiter Soft HP\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Jupiter Soft HP\\Desktop\\New folder (4)\\JudicialSystem\\Judicial system\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "/home/winchester533/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\Jupiter Soft HP\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -8295,7 +8302,8 @@
         "enableAudit": "true",
         "auditLevel": "low",
         "auditMode": "direct"
-      }
+      },
+      "SdkAnalysisLevel": "9.0.200"
     },
     "frameworks": {
       "net8.0": {
@@ -8379,7 +8387,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/8.0.408/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.201/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
