@@ -1,16 +1,18 @@
-﻿@{
-    ViewData["Title"] = "Chat";
-}
+﻿<h2>Chat</h2>
 
-<h2>Chat</h2>
-
-<input type="text" id="userInput" placeholder="Your name" />
 <input type="text" id="messageInput" placeholder="Your message" />
+<select id="recipientSelect">
+    <option value="ALL">Public (Everyone)</option>
+</select>
 <button onclick="sendMessage()">Send</button>
 
+<h3>Messages</h3>
 <ul id="messagesList"></ul>
 
- <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/6.0.0/signalr.min.js"></script>
+<h3>Online Users</h3>
+<ul id="onlineUsersList"></ul>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/6.0.0/signalr.min.js"></script>
 <script>
     const connection = new signalR.HubConnectionBuilder()
         .withUrl("/chatHub")
@@ -22,11 +24,48 @@
         document.getElementById("messagesList").appendChild(msg);
     });
 
+    connection.on("ReceivePrivateMessage", function (fromUser, message) {
+        const msg = document.createElement("li");
+        msg.textContent = `🔒 Private from ${fromUser}: ${message}`;
+        msg.style.color = "blue";
+        document.getElementById("messagesList").appendChild(msg);
+    });
+
+    connection.on("UserListUpdated", function (userList) {
+        const currentUser = "@User.Identity.Name";
+        const select = document.getElementById("recipientSelect");
+        const usersUl = document.getElementById("onlineUsersList");
+
+        select.innerHTML = '<option value="ALL">Public (Everyone)</option>';
+        usersUl.innerHTML = '';
+
+        userList.forEach(user => {
+            if (user !== currentUser) {
+                const opt = document.createElement("option");
+                opt.value = user;
+                opt.text = user;
+                select.appendChild(opt);
+
+                const li = document.createElement("li");
+                li.textContent = user;
+                usersUl.appendChild(li);
+            }
+        });
+    });
+
     connection.start().catch(err => console.error(err.toString()));
 
     function sendMessage() {
-        const user = document.getElementById("userInput").value;
         const message = document.getElementById("messageInput").value;
-        connection.invoke("SendMessage", user, message).catch(err => console.error(err.toString()));
+        const recipient = document.getElementById("recipientSelect").value;
+        const currentUser = "@User.Identity.Name";
+
+        if (recipient === "ALL") {
+            connection.invoke("SendMessage", currentUser, message).catch(err => console.error(err.toString()));
+        } else {
+            connection.invoke("SendPrivateMessage", recipient, message).catch(err => console.error(err.toString()));
+        }
+
+        document.getElementById("messageInput").value = "";
     }
 </script>

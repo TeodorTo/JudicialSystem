@@ -13,13 +13,14 @@ public class EmailSender : IEmailSender
     private readonly string _SenderPassword;
     private readonly ILogger<EmailSender> _logger;
 
+    
     public EmailSender(IConfiguration configuration, ILogger<EmailSender> logger)
     {
         var emailSetting = configuration.GetSection("EmailSettings");
         _SmtpServer = "smtp.gmail.com";
         _Port = 587;
-        _SenderEmail = emailSetting["SenderEmail"];
-        _SenderPassword = emailSetting["SenderPassword"];
+        _SenderEmail = "todorov1302@gmail.com";
+        _SenderPassword = "gapc rkts tcem jiuu";
         _logger = logger;
         _logger.LogInformation("EmailSender initialized with SMTP server: {SmtpServer}, Port: {Port}, Sender: {SenderEmail}", _SmtpServer, _Port, _SenderEmail);
     }
