@@ -133,8 +133,6 @@ Layout = null;
 
 <div id="participants"></div>
 
-<audio id="remoteAudio" autoplay></audio>
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/7.0.5/signalr.min.js"></script>
 <script>
     const connection = new signalR.HubConnectionBuilder()
@@ -159,74 +157,139 @@ Layout = null;
     });
 
     connection.on("UserJoined", async (connectionId, userName) => {
+        console.log(`User ${userName} joined with ID ${connectionId}`);
         updateStatus(`User ${userName} joined`, true);
-        const pc = createPeer(connectionId);
-        peerConnections[connectionId] = pc;
+        addParticipantCard(connectionId, userName, false);
+    });
 
-        
+    connection.on("InitiateConnection", async (newUserId, newUserName) => {
+        console.log(`Initiating connection with ${newUserName} (${newUserId})`);
+        updateStatus(`Initiating connection with ${newUserName}`, true);
+
+        const pc = createPeer(newUserId);
+        peerConnections[newUserId] = pc;
+
         localStream.getTracks().forEach(track => pc.addTrack(track, localStream));
 
         const offer = await pc.createOffer();
         await pc.setLocalDescription(offer);
-        await connection.invoke("SendSignalToRoom", connectionId, JSON.stringify({ offer }));
+        console.log(`Sending offer to ${newUserId}`);
+        await connection.invoke("SendSignalToRoom", newUserId, JSON.stringify({ offer }));
 
-        addParticipantCard(connectionId, userName, false);
+        addParticipantCard(newUserId, newUserName, false);
     });
 
     connection.on("UserLeft", (connectionId) => {
+        console.log(`User ${connectionId} left`);
+        updateStatus(`User left`, true);
         removeParticipantCard(connectionId);
+        const pc = peerConnections[connectionId];
+        if (pc) {
+            pc.close();
+            delete peerConnections[connectionId];
+        }
+        const audioElement = document.getElementById(`audio-${connectionId}`);
+        if (audioElement) {
+            audioElement.remove();
+        }
     });
 
     connection.on("UserMuteToggled", (connectionId, muted) => {
+        console.log(`User ${connectionId} mute status: ${muted}`);
         const icon = document.querySelector(`#card-${connectionId} i`);
         if (icon) {
             icon.classList.toggle("muted", muted);
         }
     });
 
-    connection.on("ExistingUsers", (users) => {
-        users.forEach(user => {
+    connection.on("ExistingUsers", async (users) => {
+        console.log("Existing users:", users);
+        for (const user of users) {
+            console.log(`Adding existing user ${user.userName} (${user.connectionId})`);
             addParticipantCard(user.connectionId, user.userName, user.isMuted);
-        });
+
+            const pc = createPeer(user.connectionId);
+            peerConnections[user.connectionId] = pc;
+
+            localStream.getTracks().forEach(track => pc.addTrack(track, localStream));
+
+            const offer = await pc.createOffer();
+            await pc.setLocalDescription(offer);
+            console.log(`Sending offer to existing user ${user.connectionId}`);
+            await connection.invoke("SendSignalToRoom", user.connectionId, JSON.stringify({ offer }));
+        }
     });
 
-
-
     connection.on("ReceiveSignal", async (fromId, data) => {
+        console.log(`Received signal from ${fromId}:`, data);
         const signal = JSON.parse(data);
         let pc = peerConnections[fromId];
 
         if (!pc) {
+            console.log(`Creating new peer connection for ${fromId}`);
             pc = createPeer(fromId);
             peerConnections[fromId] = pc;
         }
 
-        if (signal.offer) {
-            await pc.setRemoteDescription(new RTCSessionDescription(signal.offer));
-            localStream.getTracks().forEach(track => pc.addTrack(track, localStream));
-            const answer = await pc.createAnswer();
-            await pc.setLocalDescription(answer);
-            await connection.invoke("SendSignalToRoom", fromId, JSON.stringify({ answer }));
-        } else if (signal.answer) {
-            await pc.setRemoteDescription(new RTCSessionDescription(signal.answer));
-        } else if (signal.candidate) {
-            await pc.addIceCandidate(new RTCIceCandidate(signal.candidate));
+        try {
+            if (signal.offer) {
+                console.log(`Setting remote description for offer from ${fromId}`);
+                await pc.setRemoteDescription(new RTCSessionDescription(signal.offer));
+                localStream.getTracks().forEach(track => pc.addTrack(track, localStream));
+                const answer = await pc.createAnswer();
+                await pc.setLocalDescription(answer);
+                console.log(`Sending answer to ${fromId}`);
+                await connection.invoke("SendSignalToRoom", fromId, JSON.stringify({ answer }));
+            } else if (signal.answer) {
+                console.log(`Setting remote description for answer from ${fromId}`);
+                await pc.setRemoteDescription(new RTCSessionDescription(signal.answer));
+            } else if (signal.candidate) {
+                console.log(`Adding ICE candidate from ${fromId}`);
+                await pc.addIceCandidate(new RTCIceCandidate(signal.candidate));
+            }
+        } catch (error) {
+            console.error(`Error processing signal from ${fromId}:`, error);
         }
     });
 
     function createPeer(id) {
         const pc = new RTCPeerConnection({
-            iceServers: [{ urls: "stun:stun.l.google.com:19302" }]
+            iceServers: [
+                { urls: "stun:stun.l.google.com:19302" }
+                // Добавете TURN сървър, ако е необходимо
+                // {
+                //     urls: "turn:your-turn-server.com",
+                //     username: "username",
+                //     credential: "password"
+                // }
+            ]
         });
 
         pc.onicecandidate = e => {
             if (e.candidate) {
+                console.log(`Sending ICE candidate to ${id}`);
                 connection.invoke("SendSignalToRoom", id, JSON.stringify({ candidate: e.candidate }));
             }
         };
 
         pc.ontrack = e => {
-            document.getElementById("remoteAudio").srcObject = e.streams[0];
+            console.log(`Received track from ${id}`);
+            let audioElement = document.getElementById(`audio-${id}`);
+            if (!audioElement) {
+                audioElement = document.createElement("audio");
+                audioElement.id = `audio-${id}`;
+                audioElement.autoplay = true;
+                document.body.appendChild(audioElement);
+            }
+            audioElement.srcObject = e.streams[0];
+        };
+
+        pc.oniceconnectionstatechange = () => {
+            console.log(`ICE connection state for ${id}: ${pc.iceConnectionState}`);
+            if (pc.iceConnectionState === "failed") {
+                console.warn(`ICE connection failed for ${id}, restarting...`);
+                pc.restartIce();
+            }
         };
 
         return pc;
@@ -236,25 +299,39 @@ Layout = null;
         localName = nameInput.value.trim();
         if (!localName) return;
 
-        localStream = await navigator.mediaDevices.getUserMedia({ audio: true });
-        await connection.start();
-        await connection.invoke("JoinRoom", roomName, localName);
+        try {
+            localStream = await navigator.mediaDevices.getUserMedia({ audio: true });
+            await connection.start();
+            await connection.invoke("JoinRoom", roomName, localName);
 
-        joinBtn.classList.add("hidden");
-        leaveBtn.classList.remove("hidden");
-        muteBtn.classList.remove("hidden");
-        nameInput.disabled = true;
+            joinBtn.classList.add("hidden");
+            leaveBtn.classList.remove("hidden");
+            muteBtn.classList.remove("hidden");
+            nameInput.disabled = true;
 
-        addParticipantCard(connection.connectionId, localName, false);
-        updateStatus("Connected to room");
+            addParticipantCard(connection.connectionId, localName, false);
+            updateStatus("Connected to room");
+        } catch (error) {
+            console.error("Error joining room:", error);
+            updateStatus("Failed to join room", true);
+        }
     };
 
     leaveBtn.onclick = async () => {
-        Object.values(peerConnections).forEach(pc => pc.close());
-        Object.keys(peerConnections).forEach(id => delete peerConnections[id]);
+        Object.values(peerConnections).forEach(pc => {
+            pc.close();
+        });
+        Object.keys(peerConnections).forEach(id => {
+            delete peerConnections[id];
+            const audioElement = document.getElementById(`audio-${id}`);
+            if (audioElement) audioElement.remove();
+        });
 
-        connection.stop();
-        localStream.getTracks().forEach(track => track.stop());
+        if (localStream) {
+            localStream.getTracks().forEach(track => track.stop());
+        }
+
+        await connection.stop();
 
         joinBtn.classList.remove("hidden");
         leaveBtn.classList.add("hidden");
@@ -271,11 +348,9 @@ Layout = null;
         muteBtn.textContent = isMuted ? "Unmute Mic" : "Mute Mic";
         updateStatus(isMuted ? "Microphone muted" : "Microphone active");
 
-        // Toggle local icon immediately
         const icon = document.querySelector(`#card-${connection.connectionId} i`);
         if (icon) icon.classList.toggle("muted", isMuted);
 
-        // Notify others
         await connection.invoke("ToggleMute", isMuted);
     };
 
