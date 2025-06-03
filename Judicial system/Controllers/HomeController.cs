@@ -56,12 +56,23 @@ namespace Judicial_system.Controllers
             return RedirectToAction("Index");
         }
         
-        [AllowAnonymous] // Позволява достъп на не-логнати потребители
+        [AllowAnonymous] 
         public IActionResult Maintenance()
         {
             return View();
         }
 
+        [Authorize] 
+        public IActionResult VoiceChat()
+        {
+            var userId = User.Identity?.Name ?? "anonymous";
+            ViewBag.UserId = userId;
+            return View();
+        }
+
+
+        
+        
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
