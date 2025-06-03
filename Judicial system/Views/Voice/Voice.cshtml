@@ -2,13 +2,136 @@
 Layout = null;
 }
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8" />
     <title>Voice Chat Room</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            background: #1e1e2f;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            padding: 20px;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+        }
+
+        input#nameInput {
+            padding: 10px 16px;
+            border-radius: 8px;
+            border: none;
+            font-size: 16px;
+            margin-bottom: 12px;
+            width: 200px;
+            text-align: center;
+        }
+
+        .controls {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            background: #3f51b5;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        button:hover {
+            background: #5c6bc0;
+        }
+
+        #status {
+            margin-top: 20px;
+            font-size: 0.9em;
+            color: #aaa;
+            transition: all 0.3s ease;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .fade-in {
+            animation: fadeIn 0.4s ease-in-out;
+        }
+
+        @@keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        #participants {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 20px;
+            width: 100%;
+            max-width: 700px;
+        }
+
+        .participant-card {
+            background: #2a2a3d;
+            border-radius: 10px;
+            padding: 10px 16px;
+            color: #fff;
+            font-weight: 600;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease, opacity 0.3s ease;
+            animation: fadeIn 0.4s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            min-width: 160px;
+            justify-content: center;
+        }
+
+        .participant-card i {
+            font-size: 18px;
+            color: #28c76f; /* Green mic by default */
+        }
+
+        .participant-card i.muted {
+            color: #e74c3c; /* Red mic when muted */
+        }
+
+        .fade-out {
+            opacity: 0 !important;
+            transform: scale(0.9) !important;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 </head>
 <body>
-<h2>Group Voice Chat</h2>
-<button id="joinBtn">Join Call</button>
+<h2>🎧 Voice Chat Room</h2>
+
+<input type="text" id="nameInput" placeholder="Enter your name" autocomplete="off" />
+
+<div class="controls">
+    <button id="joinBtn" disabled>Join Call</button>
+    <button id="leaveBtn" class="hidden">Leave Call</button>
+    <button id="muteBtn" class="hidden">Mute Mic</button>
+</div>
+
+<div id="status">Not connected</div>
+
+<div id="participants"></div>
 
 <audio id="remoteAudio" autoplay></audio>
 
@@ -18,30 +141,56 @@ Layout = null;
         .withUrl("/callHub")
         .build();
 
-    const peerConnections = {}; // store peers by connection ID
+    const peerConnections = {};
     const roomName = "MainRoom";
     let localStream = null;
+    let isMuted = false;
+    let localName = null;
 
-    connection.on("UserJoined", async (connectionId) => {
-        console.log("User joined:", connectionId);
+    const joinBtn = document.getElementById("joinBtn");
+    const leaveBtn = document.getElementById("leaveBtn");
+    const muteBtn = document.getElementById("muteBtn");
+    const status = document.getElementById("status");
+    const participantsDiv = document.getElementById("participants");
+    const nameInput = document.getElementById("nameInput");
+
+    nameInput.addEventListener("input", () => {
+        joinBtn.disabled = nameInput.value.trim().length === 0;
+    });
+
+    connection.on("UserJoined", async (connectionId, userName) => {
+        updateStatus(`User ${userName} joined`, true);
         const pc = createPeer(connectionId);
         peerConnections[connectionId] = pc;
 
+        
         localStream.getTracks().forEach(track => pc.addTrack(track, localStream));
 
         const offer = await pc.createOffer();
         await pc.setLocalDescription(offer);
-
         await connection.invoke("SendSignalToRoom", connectionId, JSON.stringify({ offer }));
+
+        addParticipantCard(connectionId, userName, false);
     });
 
     connection.on("UserLeft", (connectionId) => {
-        console.log("User left:", connectionId);
-        if (peerConnections[connectionId]) {
-            peerConnections[connectionId].close();
-            delete peerConnections[connectionId];
+        removeParticipantCard(connectionId);
+    });
+
+    connection.on("UserMuteToggled", (connectionId, muted) => {
+        const icon = document.querySelector(`#card-${connectionId} i`);
+        if (icon) {
+            icon.classList.toggle("muted", muted);
         }
     });
+
+    connection.on("ExistingUsers", (users) => {
+        users.forEach(user => {
+            addParticipantCard(user.connectionId, user.userName, user.isMuted);
+        });
+    });
+
+
 
     connection.on("ReceiveSignal", async (fromId, data) => {
         const signal = JSON.parse(data);
@@ -55,7 +204,6 @@ Layout = null;
         if (signal.offer) {
             await pc.setRemoteDescription(new RTCSessionDescription(signal.offer));
             localStream.getTracks().forEach(track => pc.addTrack(track, localStream));
-
             const answer = await pc.createAnswer();
             await pc.setLocalDescription(answer);
             await connection.invoke("SendSignalToRoom", fromId, JSON.stringify({ answer }));
@@ -84,12 +232,80 @@ Layout = null;
         return pc;
     }
 
-    document.getElementById("joinBtn").onclick = async () => {
+    joinBtn.onclick = async () => {
+        localName = nameInput.value.trim();
+        if (!localName) return;
+
         localStream = await navigator.mediaDevices.getUserMedia({ audio: true });
         await connection.start();
-        await connection.invoke("JoinRoom", roomName);
-        console.log("Joined room:", roomName);
+        await connection.invoke("JoinRoom", roomName, localName);
+
+        joinBtn.classList.add("hidden");
+        leaveBtn.classList.remove("hidden");
+        muteBtn.classList.remove("hidden");
+        nameInput.disabled = true;
+
+        addParticipantCard(connection.connectionId, localName, false);
+        updateStatus("Connected to room");
     };
+
+    leaveBtn.onclick = async () => {
+        Object.values(peerConnections).forEach(pc => pc.close());
+        Object.keys(peerConnections).forEach(id => delete peerConnections[id]);
+
+        connection.stop();
+        localStream.getTracks().forEach(track => track.stop());
+
+        joinBtn.classList.remove("hidden");
+        leaveBtn.classList.add("hidden");
+        muteBtn.classList.add("hidden");
+        nameInput.disabled = false;
+
+        removeParticipantCard(connection.connectionId);
+        updateStatus("Disconnected");
+    };
+
+    muteBtn.onclick = async () => {
+        isMuted = !isMuted;
+        localStream.getAudioTracks()[0].enabled = !isMuted;
+        muteBtn.textContent = isMuted ? "Unmute Mic" : "Mute Mic";
+        updateStatus(isMuted ? "Microphone muted" : "Microphone active");
+
+        // Toggle local icon immediately
+        const icon = document.querySelector(`#card-${connection.connectionId} i`);
+        if (icon) icon.classList.toggle("muted", isMuted);
+
+        // Notify others
+        await connection.invoke("ToggleMute", isMuted);
+    };
+
+    function updateStatus(message, temporary = false) {
+        status.textContent = message;
+        status.classList.add("fade-in");
+        if (temporary) {
+            setTimeout(() => {
+                status.textContent = connection.connectionId ? "Connected to room" : "Not connected";
+            }, 3000);
+        }
+    }
+
+    function addParticipantCard(connectionId, userName, muted) {
+        if (document.getElementById(`card-${connectionId}`)) return;
+
+        const card = document.createElement("div");
+        card.classList.add("participant-card");
+        card.id = `card-${connectionId}`;
+        card.innerHTML = `<i class="fas fa-microphone${muted ? ' muted' : ''}"></i> ${userName}`;
+        participantsDiv.appendChild(card);
+    }
+
+    function removeParticipantCard(connectionId) {
+        const card = document.getElementById(`card-${connectionId}`);
+        if (card) {
+            card.classList.add("fade-out");
+            setTimeout(() => card.remove(), 300);
+        }
+    }
 </script>
 </body>
 </html>
