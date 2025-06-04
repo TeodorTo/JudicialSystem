@@ -5,12 +5,13 @@ namespace Judicial_system.Models;
 public class BsaModel
 {
     [Required]
-    [Range(50, 250)]
-    public double HeightCm { get; set; }  // Ръст в см
+    public double HeightCm { get; set; }  
 
     [Required]
-    [Range(20, 200)]
-    public double WeightKg { get; set; }  // Тегло в кг
+    public double WeightKg { get; set; }  
 
     public double? BsaResult { get; set; }
+    
+    public double? BsaFullResult { get; set; }
+
 }

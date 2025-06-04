@@ -20,5 +20,9 @@
 {
     <div class="alert alert-success mt-3">
         <strong>Резултат:</strong> BSA ≈ @Model.BsaResult.Value м²
+        <button type="button" class="btn btn-link p-0 ms-2" onclick="document.getElementById('fullResult').style.display='inline'; this.style.display='none';">
+            Покажи целия резултат
+        </button>
+        <span id="fullResult" style="display:none;">(@Model.BsaFullResult м²)</span>
     </div>
 }

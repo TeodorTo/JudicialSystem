@@ -16,12 +16,12 @@ public class BsaController : Controller
     {
         if (ModelState.IsValid)
         {
-            // Формулата на Mosteller:
-            // BSA = sqrt((ръст * тегло) / 3600)
-            double bsa = Math.Sqrt((model.HeightCm * model.WeightKg) / 3600);
-            model.BsaResult = Math.Round(bsa, 2); // Закръгляме до 2 знака
+            double fullBsa = Math.Sqrt((model.HeightCm * model.WeightKg) / 3600);
+            model.BsaFullResult = fullBsa;
+            model.BsaResult = Math.Round(fullBsa, 2);
         }
 
         return View(model);
     }
+
 }
