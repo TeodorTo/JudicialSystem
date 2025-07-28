@@ -8260,23 +8260,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Jupiter Soft HP\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\katar\\.nuget\\packages\\": {},
+    "D:\\Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Jupiter Soft HP\\Desktop\\New folder (5)\\JudicialSystem\\Judicial system\\Judicial system.csproj",
+      "projectUniqueName": "C:\\Users\\katar\\Desktop\\New folder (3)\\JudicialSystem\\Judicial system\\Judicial system.csproj",
       "projectName": "Judicial system",
-      "projectPath": "C:\\Users\\Jupiter Soft HP\\Desktop\\New folder (5)\\JudicialSystem\\Judicial system\\Judicial system.csproj",
-      "packagesPath": "C:\\Users\\Jupiter Soft HP\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Jupiter Soft HP\\Desktop\\New folder (5)\\JudicialSystem\\Judicial system\\obj\\",
+      "projectPath": "C:\\Users\\katar\\Desktop\\New folder (3)\\JudicialSystem\\Judicial system\\Judicial system.csproj",
+      "packagesPath": "C:\\Users\\katar\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\katar\\Desktop\\New folder (3)\\JudicialSystem\\Judicial system\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        "D:\\Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\Jupiter Soft HP\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\katar\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -8388,7 +8388,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.201/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.203/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

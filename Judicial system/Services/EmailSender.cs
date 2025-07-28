@@ -1,7 +1,9 @@
-﻿using MailKit.Net.Smtp;
+﻿using Judicial_system.Models;
+using MailKit.Net.Smtp;
 using MailKit.Security;
 using MimeKit;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 
 namespace Judicial_system.Services;
 
@@ -14,13 +16,13 @@ public class EmailSender : IEmailSender
     private readonly ILogger<EmailSender> _logger;
 
     
-    public EmailSender(IConfiguration configuration, ILogger<EmailSender> logger)
+    public EmailSender(IOptions<EmailSettings> emailSettings, ILogger<EmailSender> logger)
     {
-        var emailSetting = configuration.GetSection("EmailSettings");
-        _SmtpServer = "smtp.gmail.com";
-        _Port = 587;
-        _SenderEmail = "todorov1302@gmail.com";
-        _SenderPassword = "gapc rkts tcem jiuu";
+        var settings = emailSettings.Value;
+        _SmtpServer = settings.SmtpServer;
+        _Port = settings.Port;
+        _SenderEmail = settings.SenderEmail;
+        _SenderPassword = settings.SenderPassword;
         _logger = logger;
         _logger.LogInformation("EmailSender initialized with SMTP server: {SmtpServer}, Port: {Port}, Sender: {SenderEmail}", _SmtpServer, _Port, _SenderEmail);
     }

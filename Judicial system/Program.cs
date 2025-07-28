@@ -1,53 +1,61 @@
+using Judicial_system;
 using Judicial_system.Data;
 using Judicial_system.Middleware;
 using Judicial_system.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
-using System.Collections;
-using Judicial_system;
+using Microsoft.AspNetCore.SignalR;
 using Judicial_system.Hubs;
 using Judicial_system.Models;
-using Microsoft.AspNetCore.SignalR;
 using Task = System.Threading.Tasks.Task;
 
-// Create builder
 var builder = WebApplication.CreateBuilder(args);
 
-// Configure EmailSender
-builder.Services.AddTransient<IEmailSender, EmailSender>();
-builder.Services.AddSingleton<EmailBackgroundService>(); // Добавяме като Singleton
-builder.Services.AddSignalR();
-builder.Services.AddSingleton<IUserIdProvider, NameUserIdProvider>();
+// =================== EMAIL SERVICES ===================
+// Твоят собствен IEmailSender за вътрешна употреба
+builder.Services.AddTransient<Judicial_system.Services.IEmailSender, EmailSender>();
+
+// Системният IEmailSender (на Identity) чрез адаптера
+builder.Services.AddTransient<Microsoft.AspNetCore.Identity.UI.Services.IEmailSender, IdentityEmailSenderAdapter>();
+
+// BackgroundService за изпращане на мейли
+builder.Services.AddSingleton<EmailBackgroundService>();
 builder.Services.AddHostedService(provider => provider.GetRequiredService<EmailBackgroundService>());
 
+// SignalR
+builder.Services.AddSignalR();
+builder.Services.AddSingleton<IUserIdProvider, NameUserIdProvider>();
+
+// =================== DATABASE CONNECTION ===================
 var envConnectionString = Environment.GetEnvironmentVariable("DB_SERVER") != null
     ? $"Server={Environment.GetEnvironmentVariable("DB_SERVER")};" +
       $"Database={Environment.GetEnvironmentVariable("DB_NAME")};" +
       $"User Id={Environment.GetEnvironmentVariable("DB_USER")};" +
       $"Password={Environment.GetEnvironmentVariable("DB_PASSWORD")};" +
       $"TrustServerCertificate=True;"
-    : builder.Configuration.GetConnectionString("DefaultConnection") 
+    : builder.Configuration.GetConnectionString("DefaultConnection")
       ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
 
-// Register DbContext
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(envConnectionString));
 
-// Add Identity
+// =================== IDENTITY ===================
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>();
 
-// Logging
+// =================== LOGGING ===================
 builder.Services.AddLogging(logging =>
 {
     logging.AddConsole();
 });
 
-// Load EmailSettings from environment variables
+// =================== EMAIL SETTINGS ===================
+
+builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("EmailSettings"));
+/*
 builder.Services.Configure<EmailSettings>(options =>
 {
     options.SmtpServer = Environment.GetEnvironmentVariable("SMTP_SERVER") ?? "";
@@ -55,8 +63,9 @@ builder.Services.Configure<EmailSettings>(options =>
     options.SenderEmail = Environment.GetEnvironmentVariable("SENDER_EMAIL") ?? "";
     options.SenderPassword = Environment.GetEnvironmentVariable("SENDER_PASSWORD") ?? "";
 });
+*/
 
-// MVC
+// =================== MVC & SESSION ===================
 builder.Services.AddControllersWithViews();
 
 // Maintenance mode flag
@@ -70,10 +79,9 @@ builder.Services.AddSession(options =>
     options.Cookie.IsEssential = true;
 });
 
-
 var app = builder.Build();
 
-// Dev / Prod behavior
+// =================== PIPELINE ===================
 if (app.Environment.IsDevelopment())
 {
     app.UseMigrationsEndPoint();
@@ -86,27 +94,22 @@ else
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
-
-// Add session middleware before authentication and routing
 app.UseSession();
-
 app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
-
 app.UseMaintenanceMode();
 
-// Map routes
+// =================== ROUTES ===================
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.MapHub<ChatHub>("/chatHub");
 app.MapHub<CallHub>("/callHub");
-
 app.MapRazorPages();
 
-// Role init
+// =================== ROLES INIT ===================
 using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
@@ -115,7 +118,7 @@ using (var scope = app.Services.CreateScope())
 
 app.Run();
 
-// Create initial roles and admin user
+// =================== ROLE SEED ===================
 static async Task InitializeRoles(IServiceProvider serviceProvider)
 {
     var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();

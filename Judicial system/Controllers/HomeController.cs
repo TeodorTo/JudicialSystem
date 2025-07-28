@@ -23,12 +23,7 @@ namespace Judicial_system.Controllers
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public async Task<IActionResult> Index()
         {
-            ViewBag.MaintenanceMode = AppState.MaintenanceMode; // Предаваме статуса на изгледа
-
-            var receiver = "theodore130802@gmail.com";
-            var subject = "test";
-            var message = "Hello World!";
-            await _emailSender.SendEmailAsync(receiver, subject, message);
+            ViewBag.MaintenanceMode = AppState.MaintenanceMode; 
             return View();
         }
 
