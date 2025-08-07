@@ -37,7 +37,7 @@ var envConnectionString = Environment.GetEnvironmentVariable("DB_SERVER") != nul
       ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlServer(envConnectionString));
+    options.UseNpgsql(envConnectionString));
 
 // =================== IDENTITY ===================
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
